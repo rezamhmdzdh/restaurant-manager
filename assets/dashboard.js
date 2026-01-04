@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
         $('#refreshIndicator').show();
 
         $.ajax({
-            url: RM.ajaxUrl,
+            url: RM_Dashboard.ajaxUrl,
             method: 'POST',
             data: {
                 action: 'rm_orders',
@@ -106,7 +106,7 @@ jQuery(document).ready(function ($) {
     // modal details
     function loadOrderDetails(orderId) {
         $.ajax({
-            url: RM.ajaxUrl,
+            url: RM_Dashboard.ajaxUrl,
             method: 'POST',
             data: {
                 action: 'rm_orders',
@@ -169,7 +169,7 @@ jQuery(document).ready(function ($) {
         const notes = $('#orderNotes').val();
 
         $.ajax({
-            url: RM.ajaxUrl,
+            url: RM_Dashboard.ajaxUrl,
             method: 'POST',
             data: {
                 action: 'rm_orders',

@@ -8,7 +8,7 @@ function rm_inventory_get_products_ajax()
 {
     check_ajax_referer('rm_nonce', 'nonce');
 
-    if (!current_user_can('manage_woocommerce')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error(['message' => 'دسترسی ممنوع']);
     }
 

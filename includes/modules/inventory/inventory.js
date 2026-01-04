@@ -1,22 +1,26 @@
 document.getElementById('rm-load-products')?.addEventListener('click', () => {
 
-    fetch(RM.ajax, {
+    fetch(RM_Inventory.ajaxUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: new URLSearchParams({
             action: 'rm_inventory_get_products',
-            nonce: RM.nonce
+            nonce: RM_Inventory.nonce
         })
     })
+
         .then(r => r.json())
         .then(r => {
-            document.getElementById('rm-products').innerHTML = r.data.html;
-            if (r.success) {
+            if (!r.success) {
+                console.error('Inventory AJAX Error:', r);
+                document.getElementById('rm-products').innerHTML =
+                    '<p class="rm-error">خطا در دریافت محصولات</p>';
+                return;
+            }
+            if (r.data?.html) {
                 document.getElementById('rm-products').innerHTML = r.data.html;
             }
         });
-
-
 });
 
 document.addEventListener('click', function (e) {
@@ -32,12 +36,12 @@ document.addEventListener('click', function (e) {
 
     message.innerHTML = 'در حال ذخیره...';
 
-    fetch(RM.ajax, {
+    fetch(RM_Inventory.ajaxUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: new URLSearchParams({
             action: 'rm_inventory_update_product',
-            nonce: RM.nonce,
+            nonce: RM_Inventory.nonce,
             product_id: productId,
             stock: stock,
         })
@@ -64,12 +68,12 @@ document.addEventListener('click', function (e) {
 
     message.innerHTML = 'در حال ناموجود کردن...';
 
-    fetch(RM.ajax, {
+    fetch(RM_Inventory.ajaxUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: new URLSearchParams({
             action: 'rm_inventory_mark_outofstock',
-            nonce: RM.nonce,
+            nonce: RM_Inventory.nonce,
             product_id: productId
         })
     })

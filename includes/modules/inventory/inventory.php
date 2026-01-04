@@ -11,8 +11,8 @@ function rm_inventory_scripts() {
         'rm-inventory',
         RM_URL . 'includes/modules/inventory/inventory.js',[], 'RM_VER',true);
 
-    wp_localize_script('rm-inventory', 'RM', [
-        'ajax'  => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('rm_nonce')
-    ]);
+//    wp_localize_script('rm-inventory', 'RM', [
+//        'ajax'  => admin_url('admin-ajax.php'),
+//        'nonce' => wp_create_nonce('rm_nonce')
+//    ]);
 }

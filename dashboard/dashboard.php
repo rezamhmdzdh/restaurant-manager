@@ -3,10 +3,6 @@
     <aside class="sidebar">
         <h3>مدیرت رستوران</h3>
         <nav class="nav-menu">
-            <!--                <a href="#" class="nav-item active" data-page="dashboard">-->
-            <!--                    <i class="fas fa-home"></i>-->
-            <!--                    <span>Dashboard</span>-->
-            <!--                </a>-->
             <a href="#" class="nav-item active" data-page="product-list">
                 <span class="menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path
@@ -14,13 +10,13 @@
                 </span>
                 <span>لیست غذا</span>
             </a>
-            <div href="" class="nav-item" data-page="orders">
+            <a href="#" class="nav-item" data-page="orders">
                 <span class="menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path
                                 d="M235.3 379.3l-96 96c-6.2 6.2-16.4 6.2-22.6 0l-96-96c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L112 425.4 112 48c0-8.8 7.2-16 16-16s16 7.2 16 16l0 377.4 68.7-68.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6zM304 48l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 128l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 128l192 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 128l256 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-256 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
                 </span>
                 <span>سفارشات</span>
-            </div>
+            </a>
             <div href="" class="nav-item" data-page="comments">
                 <span class="menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path
@@ -47,107 +43,123 @@
 
 
         <!-- Orders Page -->
+
+        <?php
+        // تعریف در بالای صفحه تا همیشه در دسترس باشد
+        $orders_data = rm_orders_page_data();
+        ?>
         <div class="content hidden" id="orders-page">
             <div class="page-header">
-                <h3>مدیرت سفارش ها</h3>
+                <h3>مدیریت سفارش‌ها</h3>
+                <small class="refresh-indicator" id="refreshIndicator" style="display:none; color:#28a745;">
+                    در حال به‌روزرسانی سفارشات...
+                </small>
             </div>
 
             <div class="table-container">
-                <table class="data-table">
+                <table class="data-table responsive-table">
                     <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>شماره سفارش</th>
+                        <th>مشتری</th>
+                        <th>وضعیت</th>
+                        <th>تاریخ</th>
+                        <th>مبلغ کل</th>
+                        <th>اقدامات</th>
                     </tr>
                     </thead>
                     <tbody id="orderTableBody">
                     <?php
-
-                    $orders = [];
-                    foreach ($orders as $order) {
-                        echo '<tr data-id="' . $order['id'] . '"><td>' . $order['id'] . '</td><td>' . $order['customer'] . '</td><td>' . $order['status'] . '</td><td>' . $order['date'] . '</td><td><button class="view-details">جزئیات</button></td></tr>';
-                    }
-                    ?>
+                    $orders_data = rm_orders_page_data();
+                    foreach ($orders_data['orders'] as $order):
+                        ?>
+                        <tr class="order-row" data-id="<?php echo esc_attr($order['id']); ?>">
+                            <td data-label="شماره">#<?php echo esc_html($order['id']); ?></td>
+                            <td data-label="مشتری"><?php echo esc_html($order['customer']); ?></td>
+                            <td data-label="وضعیت">
+                        <span class="status-badge status-<?php echo esc_attr($order['status_key']); ?>">
+                            <?php echo esc_html($order['status']); ?>
+                        </span>
+                            </td>
+                            <td data-label="تاریخ"><?php echo esc_html($order['date']); ?></td>
+                            <td data-label="مبلغ"><?php echo $order['total']; ?></td>
+                            <td data-label="اقدامات">
+                                <button class="btn btn-small btn-primary view-details">جزئیات</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
         </div>
-
+        <!-- End Orders Page -->
 
         <!-- Order Edit Modal -->
-        <div class="modal" id="orderEditModal">
+        <div class="modal" id="orderEditModal" style="display:none;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Edit Order #<span id="orderNumber"></span></h2>
-                    <button class="close-btn" onclick="closeOrderEditModal()">×</button>
+                    <h2>ویرایش سفارش #<span id="orderNumber"></span></h2>
+                    <button class="close-btn">×</button>
                 </div>
                 <form id="orderEditForm">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Order Status</label>
-                            <select name="status" required>
-                                <option value="pending">Pending</option>
-                                <option value="processing">Processing</option>
-                                <option value="completed">Completed</option>
-                                <option value="cancelled">Cancelled</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Payment Status</label>
-                            <select name="payment_status" required>
-                                <option value="pending">Pending</option>
-                                <option value="paid">Paid</option>
-                                <option value="refunded">Refunded</option>
+                            <label>وضعیت سفارش</label>
+                            <select name="status" id="statusSelect" required>
+                                <option value="pending">در انتظار پرداخت</option>
+                                <option value="processing">در حال آماده‌سازی</option>
+                                <option value="on-hold">در انتظار تأیید</option>
+                                <option value="completed">تکمیل شده</option>
+                                <option value="cancelled">لغو شده</option>
+                                <option value="refunded">مرجوع شده</option>
+                                <option value="failed">ناموفق</option>
                             </select>
                         </div>
                     </div>
+
                     <div class="order-items">
-                        <h3>Order Items</h3>
+                        <h3>محصولات سفارش</h3>
                         <table class="order-items-table">
                             <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th>Actions</th>
+                                <th>محصول</th>
+                                <th>تعداد</th>
+                                <th>قیمت واحد</th>
+                                <th>جمع</th>
                             </tr>
                             </thead>
-                            <tbody id="orderItemsBody">
-                            <!-- Order items will be dynamically added here -->
-                            </tbody>
+                            <tbody id="orderItemsBody"></tbody>
                         </table>
                     </div>
+
                     <div class="order-summary">
-                        <div class="summary-row">
-                            <span>Subtotal:</span>
-                            <span id="orderSubtotal">$0.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Shipping:</span>
-                            <span id="orderShipping">$0.00</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Tax:</span>
-                            <span id="orderTax">$0.00</span>
-                        </div>
-                        <div class="summary-row total">
-                            <span>Total:</span>
-                            <span id="orderTotal">$0.00</span>
-                        </div>
+                        <div class="summary-row"><span>جمع جزء:</span><span id="orderSubtotal"></span></div>
+                        <div class="summary-row"><span>حمل و نقل:</span><span id="orderShipping"></span></div>
+                        <div class="summary-row"><span>مالیات:</span><span id="orderTax"></span></div>
+                        <div class="summary-row total"><span>جمع کل:</span><span id="orderTotal"></span></div>
                     </div>
+
                     <div class="form-group">
-                        <label>Notes</label>
-                        <textarea name="notes"></textarea>
+                        <label>یادداشت داخلی (برای آشپزخانه)</label>
+                        <textarea name="notes" id="orderNotes" rows="4" placeholder="مثلاً: بدون پیاز، تند باشد..."></textarea>
                     </div>
+
                     <div class="modal-actions">
-                        <button type="button" class="cancel-btn" onclick="closeOrderEditModal()">Cancel</button>
-                        <button type="submit" class="submit-btn">Update Order</button>
+                        <button type="button" class="cancel-btn close-btn">انصراف</button>
+                        <button type="submit" class="submit-btn">به‌روزرسانی سفارش</button>
                     </div>
                 </form>
             </div>
         </div>
+
+
+        <!-- Comments Page (Placeholder) -->
+        <div class="content hidden" id="comments-page">
+            <div class="page-header">
+                <h3>نظرات مشتریان</h3>
+            </div>
+            <p>این بخش در آینده پیاده‌سازی خواهد شد.</p>
+        </div>
+
     </main>
 </div>

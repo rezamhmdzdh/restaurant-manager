@@ -1,15 +1,16 @@
 <?php
-if (!defined('ABSPATH')) exit;
+defined('ABSPATH') || exit;
 
 /**
- * get order list
+ * Get list of orders for dashboard table
+ * Only shows relevant statuses for restaurant: pending, processing, on-hold
  */
-function rm_get_orders_list($status = ['pending', 'processing'], $limit = 20) {
+function rm_get_orders_list() {
     $args = array(
-        'limit' => $limit,
-        'status' => $status,
-        'orderby' => 'date',
-        'order' => 'DESC',
+        'limit'         => 50,
+        'status'        => array('pending', 'processing', 'on-hold'),
+        'orderby'       => 'date',
+        'order'         => 'DESC',
     );
 
     $orders = wc_get_orders($args);
@@ -20,7 +21,7 @@ function rm_get_orders_list($status = ['pending', 'processing'], $limit = 20) {
             'id'         => $order->get_id(),
             'customer'   => $order->get_formatted_billing_full_name() ?: 'مهمان',
             'status'     => wc_get_order_status_name($order->get_status()),
-            'status_key' => $order->get_status(),
+            'status_key' => $order->get_status(), // برای کلاس CSS
             'date'       => $order->get_date_created()->date_i18n('Y/m/d H:i'),
             'total'      => $order->get_formatted_order_total(),
         );
@@ -30,11 +31,13 @@ function rm_get_orders_list($status = ['pending', 'processing'], $limit = 20) {
 }
 
 /**
- * get details order
+ * Get full details of a single order for modal
  */
 function rm_get_order_details($order_id) {
     $order = wc_get_order($order_id);
-    if (!$order) return false;
+    if (!$order) {
+        return false;
+    }
 
     $items = [];
     foreach ($order->get_items() as $item) {
@@ -42,7 +45,7 @@ function rm_get_order_details($order_id) {
         $items[] = array(
             'name'     => $item->get_name(),
             'quantity' => $item->get_quantity(),
-            'price'    => wc_price($item->get_total() / $item->get_quantity()),
+            'price'    => wc_price($item->get_subtotal() / $item->get_quantity()),
             'total'    => wc_price($item->get_total()),
             'image'    => $product ? wp_get_attachment_image_url($product->get_image_id(), 'thumbnail') : '',
         );
@@ -51,7 +54,7 @@ function rm_get_order_details($order_id) {
     return array(
         'id'             => $order->get_id(),
         'status'         => $order->get_status(),
-        'payment_status' => $order->get_meta('_payment_method') ? $order->get_status() : 'pending', // قابل بهبود
+        'status_name'    => wc_get_order_status_name($order->get_status()),
         'subtotal'       => wc_price($order->get_subtotal()),
         'shipping'       => wc_price($order->get_shipping_total()),
         'tax'            => wc_price($order->get_total_tax()),

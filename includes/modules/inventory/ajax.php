@@ -4,21 +4,6 @@ defined('ABSPATH') || exit;
 
 add_action('wp_ajax_rm_inventory_get_products', 'rm_inventory_get_products_ajax');
 
-//function rm_inventory_get_products_ajax() {
-//
-//    check_ajax_referer('rm_nonce', 'nonce');
-//
-//    $products = rm_inventory_get_products();
-//
-//    ob_start();
-//    include __DIR__ . '/templates/main-layout.php';
-//    $html = ob_get_clean();
-//
-//    wp_send_json_success([
-//        'html' => $html
-//    ]);
-//}
-
 function rm_inventory_get_products_ajax()
 {
     check_ajax_referer('rm_nonce', 'nonce');

@@ -1,51 +1,55 @@
 <?php
-if (!defined('ABSPATH')) exit;
+defined('ABSPATH') || exit;
 
 function rm_orders_ajax_handler() {
+    // Check nonce for security
     check_ajax_referer('rm_orders_nonce', 'nonce');
 
-    $action = sanitize_text_field($_POST['sub_action']);
+    $sub_action = sanitize_text_field($_POST['sub_action'] ?? '');
 
-    switch ($action) {
+    switch ($sub_action) {
+
         case 'get_list':
-            $orders = rm_get_orders_list(['pending', 'processing', 'on-hold']);
+            $orders = rm_get_orders_list();
             wp_send_json_success($orders);
             break;
 
         case 'get_details':
-            $order_id = intval($_POST['order_id']);
+            $order_id = intval($_POST['order_id'] ?? 0);
             $details = rm_get_order_details($order_id);
             if ($details) {
                 wp_send_json_success($details);
             } else {
-                wp_send_json_error('سفارش یافت نشد');
+                wp_send_json_error('سفارش یافت نشد.');
             }
             break;
 
         case 'update_order':
-            $order_id = intval($_POST['order_id']);
+            $order_id = intval($_POST['order_id'] ?? 0);
             $order = wc_get_order($order_id);
 
             if (!$order) {
-                wp_send_json_error('سفارش معتبر نیست');
+                wp_send_json_error('سفارش معتبر نیست.');
             }
 
-            // به‌روزرسانی وضعیت
-            if (!empty($_POST['status'])) {
-                $order->update_status(sanitize_text_field($_POST['status']), 'به‌روزرسانی از پنل رستوران');
+            // Update status if provided
+            $new_status = sanitize_text_field($_POST['status'] ?? '');
+            if ($new_status && in_array($new_status, array_keys(wc_get_order_statuses()))) {
+                $order->update_status($new_status, 'به‌روزرسانی از پنل مدیریت رستوران');
             }
 
-            // یادداشت مشتری
-            if (!empty($_POST['notes'])) {
-                $order->set_customer_note(sanitize_textarea_field($_POST['notes']));
+            // Update customer note
+            $notes = sanitize_textarea_field($_POST['notes'] ?? '');
+            if ($notes !== $order->get_customer_note()) {
+                $order->set_customer_note($notes);
                 $order->save();
             }
 
-            wp_send_json_success('سفارش با موفقیت به‌روزرسانی شد');
+            wp_send_json_success('سفارش با موفقیت به‌روزرسانی شد.');
             break;
 
         default:
-            wp_send_json_error('اقدام نامعتبر');
+            wp_send_json_error('عملیات نامعتبر است.');
     }
 }
 

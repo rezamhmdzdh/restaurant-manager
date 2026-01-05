@@ -25,7 +25,6 @@
     width: 100%;
     background-color: #F8F8F8;
     padding: 10px;
-    /*margin-bottom: 10px;*/
 }
 
 .nav-menu {
@@ -509,7 +508,7 @@ th {
     color: var(--danger-color);
 }
 
-#rm-dashboard button {
+#rm-dashboard .page-header button {
     color: #FFF;
     font-size: 14px;
     font-weight: 600;
@@ -548,6 +547,16 @@ th {
 
 .rm-product-actions-buttons button {
     height: 45px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all ease .15s;
+    cursor: pointer;
+    outline: none;
+    background: #019142;
+    border: unset;
 }
 
 .rm-product-actions-buttons {
@@ -603,6 +612,8 @@ th {
     color: #721c24;
 }
 
+/*orders*/
+
 #rm-orders-list {
     display: flex;
     flex-wrap: wrap;
@@ -610,13 +621,87 @@ th {
 }
 
 .rm-order-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
     width: 100%;
-    display: flex;
-    background-color: #F6F6F6;
     padding: 14px;
     border-radius: 16px;
     padding: 16px;
     border: 1px solid var(--reyhoon-gray-light);
     height: 100%;
+}
+
+.rm-order-header {
+    display: flex;
     justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.rm-order-status {
+    background: #eee;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.rm-order-items {
+    margin: 0;
+    padding: 0 0 8px 0;
+    list-style: none;
+}
+
+.rm-order-items li {
+    display: flex;
+    font-size: 13px;
+    gap: 12px;
+}
+
+.rm-order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rm-order-action {
+    background: #111;
+    color: #fff;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/*modal*/
+.rm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+}
+
+.rm-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+}
+
+.rm-modal-content {
+    position: relative;
+    background: #fff;
+    width: 90%;
+    max-width: 420px;
+    margin: 10vh auto;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.rm-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
 }

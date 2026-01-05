@@ -65,62 +65,18 @@
         <!-- End Orders Page -->
 
         <!-- Order Edit Modal -->
-        <div class="modal" id="orderEditModal" style="display:none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>ویرایش سفارش #<span id="orderNumber"></span></h2>
-                    <button class="close-btn">×</button>
+        <div id="rm-order-modal" class="rm-modal" style="display:none;">
+            <div class="rm-modal-overlay"></div>
+
+            <div class="rm-modal-content">
+                <button class="rm-modal-close">×</button>
+
+                <div id="rm-modal-body">
+                    <!-- Order details will be rendered here -->
                 </div>
-                <form id="orderEditForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>وضعیت سفارش</label>
-                            <select name="status" id="statusSelect" required>
-                                <option value="pending">در انتظار پرداخت</option>
-                                <option value="processing">در حال آماده‌سازی</option>
-                                <option value="on-hold">در انتظار تأیید</option>
-                                <option value="completed">تکمیل شده</option>
-                                <option value="cancelled">لغو شده</option>
-                                <option value="refunded">مرجوع شده</option>
-                                <option value="failed">ناموفق</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="order-items">
-                        <h3>محصولات سفارش</h3>
-                        <table class="order-items-table">
-                            <thead>
-                            <tr>
-                                <th>محصول</th>
-                                <th>تعداد</th>
-                                <th>قیمت واحد</th>
-                                <th>جمع</th>
-                            </tr>
-                            </thead>
-                            <tbody id="orderItemsBody"></tbody>
-                        </table>
-                    </div>
-
-                    <div class="order-summary">
-                        <div class="summary-row"><span>جمع جزء:</span><span id="orderSubtotal"></span></div>
-                        <div class="summary-row"><span>حمل و نقل:</span><span id="orderShipping"></span></div>
-                        <div class="summary-row"><span>مالیات:</span><span id="orderTax"></span></div>
-                        <div class="summary-row total"><span>جمع کل:</span><span id="orderTotal"></span></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>یادداشت داخلی (برای آشپزخانه)</label>
-                        <textarea name="notes" id="orderNotes" rows="4" placeholder="مثلاً: بدون پیاز، تند باشد..."></textarea>
-                    </div>
-
-                    <div class="modal-actions">
-                        <button type="button" class="cancel-btn close-btn">انصراف</button>
-                        <button type="submit" class="submit-btn">به‌روزرسانی سفارش</button>
-                    </div>
-                </form>
             </div>
         </div>
+
 
 
         <!-- Comments Page (Placeholder) -->

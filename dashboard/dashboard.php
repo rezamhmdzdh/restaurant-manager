@@ -44,9 +44,6 @@
 
         <!-- Orders Page -->
 
-        <?php
-//        $orders_data = rm_orders_page_data();
-        ?>
         <div class="content hidden" id="orders-page">
             <div class="page-header">
                 <h3>مدیریت سفارش‌ها</h3>
@@ -56,27 +53,10 @@
             </div>
 
             <div class="table-container">
-                <div id="rm-orders-list">
-                    <!-- Orders will be rendered by JS -->
-
-                </div>
+                <?php include RM_PATH . 'dashboard/order-dashboard.php'; ?>
             </div>
         </div>
         <!-- End Orders Page -->
-
-        <!-- Order Edit Modal -->
-        <div id="rm-order-modal" class="rm-modal" style="display:none;">
-            <div class="rm-modal-overlay"></div>
-
-            <div class="rm-modal-content">
-                <button class="rm-modal-close">×</button>
-
-                <div id="rm-modal-body">
-                    <!-- Order details will be rendered here -->
-                </div>
-            </div>
-        </div>
-
 
 
         <!-- Comments Page (Placeholder) -->

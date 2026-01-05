@@ -613,95 +613,50 @@ th {
 }
 
 /*orders*/
-
-#rm-orders-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
 .rm-order-card {
-    background: #fff;
-    border-radius: 10px;
+    border: 1px solid #eee;
+    border-radius: 12px;
     padding: 12px;
-    font-size: 14px;
-    width: 100%;
-    padding: 14px;
-    border-radius: 16px;
-    padding: 16px;
-    border: 1px solid var(--reyhoon-gray-light);
-    height: 100%;
+    background: #fff;
 }
 
-.rm-order-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.rm-order-status {
-    background: #eee;
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 12px;
-}
-
-.rm-order-items {
-    margin: 0;
-    padding: 0 0 8px 0;
+.rm-order-summary {
+    cursor: pointer;
     list-style: none;
 }
 
-.rm-order-items li {
-    display: flex;
-    font-size: 13px;
-    gap: 12px;
-}
-
-.rm-order-footer {
+.rm-order-main {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    margin-bottom: 6px;
 }
 
-.rm-order-action {
-    background: #111;
-    color: #fff;
-    border: 0;
-    padding: 6px 12px;
+.rm-order-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #555;
+}
+
+.rm-order-details {
+    margin-top: 12px;
+    border-top: 1px dashed #ddd;
+    padding-top: 10px;
+}
+
+.rm-order-items {
+    padding-left: 16px;
+    margin-bottom: 10px;
+}
+
+.rm-order-status {
+    padding: 4px 8px;
     border-radius: 6px;
-    cursor: pointer;
+    font-size: 12px;
+    background: #f1f1f1;
 }
 
-/*modal*/
-.rm-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-}
-
-.rm-modal-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, .5);
-}
-
-.rm-modal-content {
-    position: relative;
-    background: #fff;
-    width: 90%;
-    max-width: 420px;
-    margin: 10vh auto;
-    border-radius: 12px;
-    padding: 16px;
-}
-
-.rm-modal-close {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-}
+/* status colors */
+.status-processing { background: #fff3cd; }
+.status-completed  { background: #d4edda; }
+.status-pending    { background: #f8d7da; }

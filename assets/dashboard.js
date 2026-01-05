@@ -25,10 +25,10 @@ jQuery(document).ready(function ($) {
         if ($(`#${targetPage}-page`).length) {
             $(`#${targetPage}-page`).removeClass('hidden');
         }
-
-        if (targetPage === 'orders') {
-            fetchOrdersList();
-        }
+        //
+        // if (targetPage === 'orders') {
+        //     fetchOrdersList();
+        // }
     });
 
     // ==================================================================

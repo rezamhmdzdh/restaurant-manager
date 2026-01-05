@@ -1,15 +1,29 @@
 <?php
+
 defined('ABSPATH') || exit;
 
+/**
+ * Load order management module files
+ */
 require_once __DIR__ . '/orders-functions.php';
 require_once __DIR__ . '/orders-ajax.php';
 
 /**
- * Prepare initial data for orders page
+ * Enqueue orders scripts
  */
-function rm_orders_page_data() {
-    return array(
-        'orders' => rm_get_orders_list(),
-        'nonce'  => wp_create_nonce('rm_orders_nonce'),
+add_action('wp_enqueue_scripts', 'rm_enqueue_orders_assets');
+function rm_enqueue_orders_assets() {
+
+    wp_enqueue_script(
+        'rm-orders',
+        RM_URL . 'includes/modules/orders/orders.js',
+        ['jquery'],
+        RM_VER,
+        true
     );
+
+    wp_localize_script('rm-orders', 'RM_Orders', [
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce'   => wp_create_nonce('rm_nonce')
+    ]);
 }

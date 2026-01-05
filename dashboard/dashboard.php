@@ -45,8 +45,7 @@
         <!-- Orders Page -->
 
         <?php
-        // تعریف در بالای صفحه تا همیشه در دسترس باشد
-        $orders_data = rm_orders_page_data();
+//        $orders_data = rm_orders_page_data();
         ?>
         <div class="content hidden" id="orders-page">
             <div class="page-header">
@@ -57,39 +56,10 @@
             </div>
 
             <div class="table-container">
-                <table class="data-table responsive-table">
-                    <thead>
-                    <tr>
-                        <th>شماره سفارش</th>
-                        <th>مشتری</th>
-                        <th>وضعیت</th>
-                        <th>تاریخ</th>
-                        <th>مبلغ کل</th>
-                        <th>اقدامات</th>
-                    </tr>
-                    </thead>
-                    <tbody id="orderTableBody">
-                    <?php
-                    $orders_data = rm_orders_page_data();
-                    foreach ($orders_data['orders'] as $order):
-                        ?>
-                        <tr class="order-row" data-id="<?php echo esc_attr($order['id']); ?>">
-                            <td data-label="شماره">#<?php echo esc_html($order['id']); ?></td>
-                            <td data-label="مشتری"><?php echo esc_html($order['customer']); ?></td>
-                            <td data-label="وضعیت">
-                        <span class="status-badge status-<?php echo esc_attr($order['status_key']); ?>">
-                            <?php echo esc_html($order['status']); ?>
-                        </span>
-                            </td>
-                            <td data-label="تاریخ"><?php echo esc_html($order['date']); ?></td>
-                            <td data-label="مبلغ"><?php echo $order['total']; ?></td>
-                            <td data-label="اقدامات">
-                                <button class="btn btn-small btn-primary view-details">جزئیات</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <div id="rm-orders-list">
+                    <!-- Orders will be rendered by JS -->
+
+                </div>
             </div>
         </div>
         <!-- End Orders Page -->
@@ -163,3 +133,5 @@
 
     </main>
 </div>
+
+

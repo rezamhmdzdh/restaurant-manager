@@ -35,6 +35,7 @@ jQuery(document).ready(function ($) {
     // 2. Orders Management Functions
     // ==================================================================
 
+    /*
     function fetchOrdersList() {
         $('#refreshIndicator').show();
 
@@ -93,11 +94,12 @@ jQuery(document).ready(function ($) {
             $tbody.append(row);
         });
     }
-
+*/
     // ==================================================================
     // 3. Order Details Modal
     // ==================================================================
 
+    /*
     $(document).on('click', '.view-details', function () {
         const orderId = $(this).data('id') || $(this).closest('tr').data('id');
         loadOrderDetails(orderId);
@@ -156,11 +158,12 @@ jQuery(document).ready(function ($) {
         $('#orderTax').html(data.tax);
         $('#orderTotal').html(data.total);
     }
-
+*/
     // ==================================================================
     // 4. Update Order (Submit Form)
     // ==================================================================
 
+    /*
     $('#orderEditForm').on('submit', function (e) {
         e.preventDefault();
 
@@ -234,23 +237,24 @@ jQuery(document).ready(function ($) {
     if ($('#orders-page').is(':visible')) {
         startOrdersPolling();
     }
-
+*/
     // ==================================================================
     // 6. Close Modal on Outside Click or Button
     // ==================================================================
 
-    window.closeOrderEditModal = function () {
-        $('#orderEditModal').hide();
-    };
+
+    // window.closeOrderEditModal = function () {
+    //     $('#orderEditModal').hide();
+    // };
 
     // کلیک بیرون از مودال
-    $(window).on('click', function (e) {
-        if ($(e.target).hasClass('modal')) {
-            closeOrderEditModal();
-        }
-    });
+    // $(window).on('click', function (e) {
+    //     if ($(e.target).hasClass('modal')) {
+    //         closeOrderEditModal();
+    //     }
+    // });
 
     // دکمه بستن
-    $('.close-btn').on('click', closeOrderEditModal);
+    // $('.close-btn').on('click', closeOrderEditModal);
 
 });

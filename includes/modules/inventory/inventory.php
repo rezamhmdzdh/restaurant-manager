@@ -10,9 +10,4 @@ function rm_inventory_scripts() {
     wp_enqueue_script(
         'rm-inventory',
         RM_URL . 'includes/modules/inventory/inventory.js',[], 'RM_VER',true);
-
-//    wp_localize_script('rm-inventory', 'RM', [
-//        'ajax'  => admin_url('admin-ajax.php'),
-//        'nonce' => wp_create_nonce('rm_nonce')
-//    ]);
 }

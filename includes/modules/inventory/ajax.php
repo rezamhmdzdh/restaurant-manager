@@ -36,9 +36,9 @@ function rm_inventory_update_product_ajax()
         wp_send_json_error('no_access');
     }
 
-    $product_id = intval($_POST['product_id']);
-    $stock = intval($_POST['stock']);
-    $active = filter_var($_POST['active'], FILTER_VALIDATE_BOOLEAN);
+    $product_id = intval($_POST['product_id'] ?? 0);
+    $stock      = intval($_POST['stock'] ?? 0);
+    $active     = isset($_POST['active']) ? filter_var($_POST['active'], FILTER_VALIDATE_BOOLEAN) : true;
 
     $updated = rm_inventory_update_product_stock(
         $product_id,
@@ -47,9 +47,9 @@ function rm_inventory_update_product_ajax()
     );
 
     if ($updated) {
-        wp_send_json_success('saved');
+        wp_send_json_success(['message' => 'ذخیره شد']);
     } else {
-        wp_send_json_error('failed');
+        wp_send_json_error(['message' => 'خطا در ذخیره']);
     }
 }
 

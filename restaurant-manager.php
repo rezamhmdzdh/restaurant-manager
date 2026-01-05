@@ -66,10 +66,10 @@ function rm_enqueue_assets() {
     );
 
     // Localize AJAX and nonce for JavaScript usage
-    wp_localize_script('rm-dashboard-js', 'RM_Dashboard', [
-        'ajaxUrl' => admin_url('admin-ajax.php'),
-        'nonce'   => wp_create_nonce('rm_orders_nonce')
-    ]);
+//    wp_localize_script('rm-dashboard-js', 'RM_Dashboard', [
+//        'ajaxUrl' => admin_url('admin-ajax.php'),
+//        'nonce'   => wp_create_nonce('rm_orders_nonce')
+//    ]);
 
     wp_localize_script('rm-inventory', 'RM_Inventory', [
         'ajaxUrl' => admin_url('admin-ajax.php'),

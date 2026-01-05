@@ -31,7 +31,6 @@ document.addEventListener('click', function (e) {
 
     const productId = card.dataset.productId;
     const stock = card.querySelector('.rm-stock-input').value;
-    // const active    = card.querySelector('.rm-status-toggle').checked;
     const message = card.querySelector('.rm-message');
 
     message.innerHTML = 'در حال ذخیره...';

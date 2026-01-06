@@ -61,6 +61,7 @@ function checkNewOrder() {
         .then(res => {
             if (res.success && res.data === true) {
                 showNewOrderModal();
+                rmPlayNewOrderSound();
             }
         });
 }

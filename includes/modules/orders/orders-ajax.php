@@ -39,10 +39,6 @@ function rm_has_new_order() {
 
     check_ajax_referer('RM_UPDATE_ORDER_STATUS', 'nonce');
 
-    if ( ! current_user_can('manage_woocommerce') ) {
-        wp_send_json_error();
-    }
-
     $page_loaded_at = intval($_POST['page_loaded_at'] ?? 0);
 
     $query = new WC_Order_Query([
@@ -50,6 +46,8 @@ function rm_has_new_order() {
         'orderby' => 'date',
         'order'   => 'DESC',
         'return'  => 'objects',
+        'status'  => ['processing'],
+//        'status'  => ['processing', 'custom-status'],
     ]);
 
     $orders = $query->get_orders();

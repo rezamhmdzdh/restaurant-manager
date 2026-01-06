@@ -1,29 +1,6 @@
 <?php
 defined('ABSPATH') || exit;
 
-if (!current_user_can('manage_options')) {
-    echo '<p>دسترسی غیرمجاز</p>';
-    return;
-}
-
-/**
- * Handle order status update
- */
-
-//if (
-//isset($_POST['rm_update_order_status']) &&
-//wp_verify_nonce($_POST['rm_nonce'], 'rm_update_order_status')
-//) {
-//$order_id = intval($_POST['order_id']);
-//$status   = sanitize_text_field($_POST['order_status']);
-//
-//$order = wc_get_order($order_id);
-//if ($order) {
-//$order->update_status($status, 'Updated from custom dashboard');
-//echo '<div class="rm-notice success">وضعیت سفارش بروزرسانی شد</div>';
-//}
-//}
-
 /**
  * Get orders
  */
@@ -91,9 +68,6 @@ $orders = wc_get_orders([
                 </select>
                 <div class="rm-order-status-notice" style="display:none;"></div>
             </details>
-
-
-
         </div>
 
     <?php endforeach; ?>

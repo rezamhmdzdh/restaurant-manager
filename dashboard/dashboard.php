@@ -70,4 +70,23 @@
     </main>
 </div>
 
+<div id="rm-new-order-modal" style="display:none;">
+    <p>سفارش جدید ثبت شد</p>
+    <button id="rm-refresh-orders">مشاهده سفارش‌ها</button>
+</div>
 
+<script>
+    function showNewOrderModal() {
+
+        const modal = document.getElementById('rm-new-order-modal');
+        if (!modal) return;
+
+        modal.style.display = 'block';
+
+        document
+            .getElementById('rm-refresh-orders')
+            ?.addEventListener('click', () => {
+                location.reload();
+            });
+    }
+</script>

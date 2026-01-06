@@ -5,7 +5,6 @@ document.addEventListener('change', function (e) {
     const select = e.target;
     const orderId = select.dataset.orderId;
     const status = select.value;
-
     const notice = select.nextElementSibling;
 
     // حالت لودینگ ساده
@@ -40,3 +39,28 @@ document.addEventListener('change', function (e) {
             notice.textContent = 'خطای ارتباط با سرور';
         });
 });
+
+
+
+const pageLoadedAt = rm_orders_ajax.page_loaded_at;
+
+setInterval(checkNewOrder, 10000);
+
+function checkNewOrder() {
+
+    fetch(rm_orders_ajax.ajax_url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+            action: 'rm_has_new_order',
+            nonce: rm_orders_ajax.nonce,
+            page_loaded_at: pageLoadedAt
+        })
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.success && res.data === true) {
+                showNewOrderModal();
+            }
+        });
+}

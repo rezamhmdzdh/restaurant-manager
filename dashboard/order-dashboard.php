@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-if ( ! current_user_can('manage_woocommerce') ) {
+if (!current_user_can('manage_options')) {
     echo '<p>دسترسی غیرمجاز</p>';
     return;
 }
@@ -9,33 +9,34 @@ if ( ! current_user_can('manage_woocommerce') ) {
 /**
  * Handle order status update
  */
-if (
-    isset($_POST['rm_update_order_status']) &&
-    wp_verify_nonce($_POST['rm_nonce'], 'rm_update_order_status')
-) {
-    $order_id = intval($_POST['order_id']);
-    $status   = sanitize_text_field($_POST['order_status']);
 
-    $order = wc_get_order($order_id);
-    if ($order) {
-        $order->update_status($status, 'Updated from custom dashboard');
-        echo '<div class="rm-notice success">وضعیت سفارش بروزرسانی شد</div>';
-    }
-}
+//if (
+//isset($_POST['rm_update_order_status']) &&
+//wp_verify_nonce($_POST['rm_nonce'], 'rm_update_order_status')
+//) {
+//$order_id = intval($_POST['order_id']);
+//$status   = sanitize_text_field($_POST['order_status']);
+//
+//$order = wc_get_order($order_id);
+//if ($order) {
+//$order->update_status($status, 'Updated from custom dashboard');
+//echo '<div class="rm-notice success">وضعیت سفارش بروزرسانی شد</div>';
+//}
+//}
 
 /**
  * Get orders
  */
 $orders = wc_get_orders([
-    'limit'   => 20,
+    'limit' => 20,
     'orderby' => 'date',
-    'order'   => 'DESC',
+    'order' => 'DESC',
 ]);
 ?>
 
 <div class="rm-orders">
 
-    <?php if ( empty($orders) ) : ?>
+    <?php if (empty($orders)) : ?>
         <p>هیچ سفارشی ثبت نشده است.</p>
     <?php endif; ?>
 
@@ -77,29 +78,61 @@ $orders = wc_get_orders([
                 <p><strong>یادداشت مشتری:</strong> <?php echo esc_html($order->get_customer_note()); ?></p>
 
                 <!-- Status update -->
-                <form method="post" class="rm-order-status-form">
-                    <?php wp_nonce_field('rm_update_order_status', 'rm_nonce'); ?>
-                    <input type="hidden" name="order_id" value="<?php echo $order->get_id(); ?>">
 
-                    <label>وضعیت سفارش:</label>
-                    <select name="order_status">
-                        <?php foreach (wc_get_order_statuses() as $key => $label) : ?>
-                            <option value="<?php echo esc_attr(str_replace('wc-', '', $key)); ?>"
-                                <?php selected($order->get_status(), str_replace('wc-', '', $key)); ?>>
-                                <?php echo esc_html($label); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-
-                    <button type="submit" name="rm_update_order_status">
-                        بروزرسانی وضعیت
-                    </button>
-                </form>
-
+                <label>وضعیت سفارش:</label>
+                <select class="rm-order-status" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
+                    <?php foreach (wc_get_order_statuses() as $key => $label) : ?>
+                        <?php $status = str_replace('wc-', '', $key); ?>
+                        <option value="<?php echo esc_attr($status); ?>"
+                            <?php selected($order->get_status(), $status); ?>>
+                            <?php echo esc_html($label); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="rm-order-status-notice" style="display:none;"></div>
             </details>
+
+
 
         </div>
 
     <?php endforeach; ?>
 
 </div>
+
+
+<script type="text/javascript">
+
+    // jQuery(document).ready(function($) {
+    //     $('.rm-order-status-form').on('submit', function(e) {
+    //         e.preventDefault();
+    //
+    //         const form = $(this);
+    //         const card = form.closest('.rm-order-card');
+    //         const statusSpan = card.find('.rm-status');
+    //         const noticeDiv = card.find('.rm-notice');
+    //
+    //         // پاک کردن پیام قبلی
+    //         noticeDiv.hide().removeClass('success error').empty();
+    //
+    //         $.post(rm_ajax.ajax_url, {
+    //             action: 'rm_update_order_status',
+    //             order_id: form.find('input[name="order_id"]').val(),
+    //             order_status: form.find('select[name="order_status"]').val(),
+    //             nonce: form.find('input[name="nonce"]').val()
+    //         }, function(response) {
+    //             if (response.success) {
+    //                 noticeDiv.text(response.data.message).addClass('success').show();
+    //
+    //                 // بروزرسانی UI
+    //                 statusSpan.text(response.data.new_status);
+    //                 card[0].className = card[0].className.replace(/status-\w+/, 'status-' + response.data.new_status_key);
+    //             } else {
+    //                 noticeDiv.text(response.data.message || 'خطا در بروزرسانی').addClass('error').show();
+    //             }
+    //         }).fail(function() {
+    //             noticeDiv.text('خطا در ارتباط با سرور').addClass('error').show();
+    //         });
+    //     });
+    // });
+</script>

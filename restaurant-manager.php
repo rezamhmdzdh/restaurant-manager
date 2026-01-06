@@ -64,8 +64,8 @@ function rm_enqueue_assets() {
         RM_VER,
         true
     );
-    wp_localize_script('rm-inventory', 'RM_Inventory', [
-        'ajaxUrl' => admin_url('admin-ajax.php'),
-        'nonce'   => wp_create_nonce('rm_nonce')
-    ]);
+//    wp_localize_script('rm-inventory', 'RM_Inventory', [
+//        'ajaxUrl' => admin_url('admin-ajax.php'),
+//        'nonce'   => wp_create_nonce('rm_nonce')
+//    ]);
 }

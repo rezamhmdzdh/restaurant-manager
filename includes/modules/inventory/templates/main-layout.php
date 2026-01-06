@@ -25,7 +25,7 @@ defined('ABSPATH') || exit;
                         $image = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '';
                         $classes = ($i === 0) ? ['reyhoon-tabs__item--active'] : [];
                         ?>
-                        <li class="reyhoon-tabs__item <?php echo esc_attr(implode(' ', $classes)); ?>]" role="tab">
+                        <li class="reyhoon-tabs__item<?php echo esc_attr(implode(' ', $classes)); ?>" role="tab">
                             <a href="#category-<?php echo esc_attr($category['id']); ?>" class="reyhoon-tabs__link">
                                 <?php echo esc_html($category['name']); ?>
                             </a>

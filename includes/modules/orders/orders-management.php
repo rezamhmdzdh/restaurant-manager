@@ -1,6 +1,10 @@
 <?php
 defined('ABSPATH') || exit;
 
+
+add_action('wp_enqueue_scripts', 'rm_enqueue_order_scripts');
+require_once __DIR__ . '/orders-ajax.php';
+
 /**
  * Get full order data for dashboard
  *
@@ -58,4 +62,20 @@ function rm_get_orders_for_dashboard() {
     }
 
     return $data;
+}
+function rm_enqueue_order_scripts() {
+
+     wp_enqueue_script(
+            'rm-orders-js',
+            plugin_dir_url(__FILE__) . 'orders.js',
+             ['jquery'],
+            '1.0.0',
+            true
+        );
+
+        wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS')
+        ]);
+
 }

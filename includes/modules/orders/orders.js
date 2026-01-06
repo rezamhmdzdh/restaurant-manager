@@ -2,9 +2,16 @@ document.addEventListener('change', function (e) {
 
     if (!e.target.classList.contains('rm-order-status')) return;
 
-    const select  = e.target;
+    const select = e.target;
     const orderId = select.dataset.orderId;
-    const status  = select.value;
+    const status = select.value;
+
+    const notice = select.nextElementSibling;
+
+    // حالت لودینگ ساده
+    notice.style.display = 'block';
+    notice.style.color = '#555';
+    notice.textContent = 'در حال بروزرسانی...';
 
     fetch(rm_orders_ajax.ajax_url, {
         method: 'POST',
@@ -18,8 +25,18 @@ document.addEventListener('change', function (e) {
     })
         .then(res => res.json())
         .then(res => {
-            if (!res.success) {
-                alert(res.data);
+
+            if (res.success) {
+                notice.style.color = 'green';
+                notice.textContent = 'تغییر وضعیت انجام شد';
+            } else {
+                notice.style.color = 'red';
+                notice.textContent = res.data || 'خطا در تغییر وضعیت';
             }
+
+        })
+        .catch(() => {
+            notice.style.color = 'red';
+            notice.textContent = 'خطای ارتباط با سرور';
         });
 });

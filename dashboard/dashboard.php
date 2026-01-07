@@ -3,17 +3,18 @@
     <aside class="sidebar">
         <h3>مدیرت رستوران</h3>
         <nav class="nav-menu">
-            <a href="#" class="nav-item active" data-page="product-list">
-                <span class="menu-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M445 221.8C428.9 132.1 350.4 64 256 64S83.1 132.1 67 221.8l0 .1c0 .1 .1 .2 .3 .3c.7 .8 2.4 1.7 4.7 1.7l368 0c2.4 0 4-1 4.7-1.7c.1-.1 .2-.2 .3-.3l0-.1zM72 256c-22.1 0-40.4-18.1-36.5-39.8C54.3 111.5 145.9 32 256 32s201.7 79.5 220.5 184.2c3.9 21.7-14.4 39.8-36.5 39.8l-24 0-192 0L72 256zm358.5 96l17.5 0c17.7 0 32 14.3 32 32c0 53-43 96-96 96l-256 0c-53 0-96-43-96-96c0-17.7 14.3-32 32-32l145.5 0 48 32L64 384c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l-65.5 0 48-32zM160 128a16 16 0 1 1 0 32 16 16 0 1 1 0-32zm80-16a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zm112 16a16 16 0 1 1 0 32 16 16 0 1 1 0-32zM32 288l192 0c3.2 0 6.2 .9 8.9 2.7L320 348.8l87.1-58.1c2.6-1.8 5.7-2.7 8.9-2.7l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-59.2 0-92 61.3c-5.4 3.6-12.4 3.6-17.8 0l-92-61.3L32 320c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
-                </span>
-                <span>لیست غذا</span>
-            </a>
-            <a href="#" class="nav-item" data-page="orders">
+
+            <a href="#" class="nav-item active" data-page="orders">
                 <span class="menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M235.3 379.3l-96 96c-6.2 6.2-16.4 6.2-22.6 0l-96-96c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L112 425.4 112 48c0-8.8 7.2-16 16-16s16 7.2 16 16l0 377.4 68.7-68.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6zM304 48l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 128l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 128l192 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 128l256 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-256 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
                 </span>
                 <span>سفارشات</span>
+            </a>
+            <a href="#" class="nav-item" data-page="product-list">
+                <span class="menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M445 221.8C428.9 132.1 350.4 64 256 64S83.1 132.1 67 221.8l0 .1c0 .1 .1 .2 .3 .3c.7 .8 2.4 1.7 4.7 1.7l368 0c2.4 0 4-1 4.7-1.7c.1-.1 .2-.2 .3-.3l0-.1zM72 256c-22.1 0-40.4-18.1-36.5-39.8C54.3 111.5 145.9 32 256 32s201.7 79.5 220.5 184.2c3.9 21.7-14.4 39.8-36.5 39.8l-24 0-192 0L72 256zm358.5 96l17.5 0c17.7 0 32 14.3 32 32c0 53-43 96-96 96l-256 0c-53 0-96-43-96-96c0-17.7 14.3-32 32-32l145.5 0 48 32L64 384c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l-65.5 0 48-32zM160 128a16 16 0 1 1 0 32 16 16 0 1 1 0-32zm80-16a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zm112 16a16 16 0 1 1 0 32 16 16 0 1 1 0-32zM32 288l192 0c3.2 0 6.2 .9 8.9 2.7L320 348.8l87.1-58.1c2.6-1.8 5.7-2.7 8.9-2.7l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-59.2 0-92 61.3c-5.4 3.6-12.4 3.6-17.8 0l-92-61.3L32 320c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+                </span>
+                <span>مدیریت موجودی</span>
             </a>
             <div href="" class="nav-item" data-page="comments">
                 <span class="menu-icon">
@@ -26,19 +27,8 @@
     <!-- Main Content -->
     <main class="main-content">
 
-
-        <!-- Product List Page -->
-        <div class="content" id="product-list-page">
-            <div class="page-header">
-                <h3>محصولات رستوران</h3>
-                <button id="rm-load-products">بارگذاری محصولات</button>
-            </div>
-            <div id="rm-products"></div>
-        </div>
-
-
         <!-- Orders Page -->
-        <div class="content hidden" id="orders-page">
+        <div class="content" id="orders-page">
             <div class="page-header">
                 <h3>مدیریت سفارش‌ها</h3>
             </div>
@@ -49,6 +39,14 @@
         </div>
         <!-- End Orders Page -->
 
+        <!-- Product List Page -->
+        <div class="content hidden" id="product-list-page">
+            <div class="page-header">
+                <h3>محصولات رستوران</h3>
+                <button id="rm-load-products">بارگذاری محصولات</button>
+            </div>
+            <div id="rm-products"></div>
+        </div>
 
         <!-- Comments Page (Placeholder) -->
         <div class="content hidden" id="comments-page">

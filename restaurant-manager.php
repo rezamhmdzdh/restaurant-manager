@@ -3,7 +3,7 @@
  * Plugin Name: Restaurant Manager
  * Plugin URI:  https://example.com/restaurant-manager
  * Description: A lightweight frontend dashboard for restaurant owners to manage inventory, orders, and reviews without accessing the WordPress admin.
- * Version:     1.5.1
+ * Version:     1.5.2
  * Author:      Reza Mohammadzadeh
  * License:     GPL-2.0+
  * Text Domain: restaurant-manager
@@ -49,7 +49,6 @@ require_once RM_PATH . 'includes/modules/orders/orders-management.php';
  */
 add_action('wp_enqueue_scripts', 'rm_enqueue_assets');
 function rm_enqueue_assets() {
-    // Optional: more specific check if needed (e.g., has_shortcode)
     wp_enqueue_style(
         'rm-dashboard-css',
         RM_URL . 'assets/dashboard.css',
@@ -64,8 +63,4 @@ function rm_enqueue_assets() {
         RM_VER,
         true
     );
-//    wp_localize_script('rm-inventory', 'RM_Inventory', [
-//        'ajaxUrl' => admin_url('admin-ajax.php'),
-//        'nonce'   => wp_create_nonce('rm_nonce')
-//    ]);
 }

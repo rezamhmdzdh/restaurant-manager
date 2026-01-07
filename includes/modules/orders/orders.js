@@ -7,7 +7,6 @@ document.addEventListener('change', function (e) {
     const status = select.value;
     const notice = select.nextElementSibling;
 
-    // حالت لودینگ ساده
     notice.style.display = 'block';
     notice.style.color = '#555';
     notice.textContent = 'در حال بروزرسانی...';
@@ -44,7 +43,7 @@ document.addEventListener('change', function (e) {
 
 const pageLoadedAt = rm_orders_ajax.page_loaded_at;
 
-setInterval(checkNewOrder, 10000);
+setInterval(checkNewOrder, 30000);
 
 function checkNewOrder() {
 

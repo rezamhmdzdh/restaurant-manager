@@ -46,8 +46,7 @@ function rm_has_new_order() {
         'orderby' => 'date',
         'order'   => 'DESC',
         'return'  => 'objects',
-        'status'  => ['processing'],
-//        'status'  => ['processing', 'custom-status'],
+        'status' => ['on-hold']
     ]);
 
     $orders = $query->get_orders();

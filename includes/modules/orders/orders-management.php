@@ -73,10 +73,10 @@ function rm_enqueue_order_scripts() {
             true
         );
 
-        wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS')
-        ]);
+//        wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
+//            'ajax_url' => admin_url('admin-ajax.php'),
+//            'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS')
+//        ]);
         wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS'),

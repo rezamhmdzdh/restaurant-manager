@@ -14,7 +14,7 @@ defined('ABSPATH') || exit;
 // Define plugin constants
 define('RM_PATH', plugin_dir_path(__FILE__));
 define('RM_URL',  plugin_dir_url(__FILE__));
-define('RM_VER',  '1.5.3');
+define('RM_VER',  '1.5.4');
 
 /**
  * Register the dashboard shortcode.

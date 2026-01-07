@@ -27,24 +27,32 @@ jQuery(document).ready(function ($) {
 });
 
 
-// function showNewOrderModal() {
-//
-//     const modal = document.getElementById('rm-new-order-modal');
-//     if (!modal) return;
-//
-//     modal.style.display = 'block';
-//
-//     document.getElementById('rm-refresh-orders')?.addEventListener('click', () => {
-//         location.reload();
-//     });
-// }
-document.addEventListener('click', function (e) {
+let rmNewOrderNotified = false;
 
+function rmNotifyNewOrder() {
+
+    if (rmNewOrderNotified) return;
+    rmNewOrderNotified = true;
+
+    const modal = document.getElementById('rm-new-order-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+    const audio = document.getElementById('rm-new-order-sound');
+    if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+            console.warn('Audio play blocked');
+        });
+    }
+}
+
+document.addEventListener('click', function (e) {
     if (e.target.id === 'rm-refresh-orders') {
         location.reload();
     }
 
-    if (e.target.id === 'close-modal') {
+    if (e.target.id === 'cloce-modal') {
         const modal = document.getElementById('rm-new-order-modal');
         if (modal) {
             modal.style.display = 'none';
@@ -53,13 +61,3 @@ document.addEventListener('click', function (e) {
 
 });
 
-
-function rmPlayNewOrderSound() {
-    const audio = document.getElementById('rm-new-order-sound');
-    if (!audio) return;
-
-    audio.currentTime = 0;
-    audio.play().catch(() => {
-        console.warn('Audio play blocked');
-    });
-}

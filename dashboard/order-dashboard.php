@@ -71,7 +71,7 @@ $orders = wc_get_orders([
                     </p>
                     <!-- Status update -->
                     <div class="rm-order-status-change">
-                        <h6>وضعیت سفارش:</h6>
+                        <h4>وضعیت سفارش:</h4>
                         <select class="rm-order-status" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
                             <?php foreach (wc_get_order_statuses() as $key => $label) : ?>
                                 <?php $status = str_replace('wc-', '', $key); ?>

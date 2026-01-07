@@ -58,8 +58,7 @@ function checkNewOrder() {
         .then(res => res.json())
         .then(res => {
             if (res.success && res.data === true) {
-                showNewOrderModal();
-                rmPlayNewOrderSound();
+                rmNotifyNewOrder();
             }
         });
 }

@@ -30,9 +30,7 @@ $orders = wc_get_orders([
 
             <!-- Main info -->
             <div class="rm-order-main">
-                <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?></p>
-
-
+                <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?> </p>
             </div>
 
             <!-- Items -->
@@ -57,26 +55,38 @@ $orders = wc_get_orders([
             <details class="rm-order-details">
                 <summary>مشاهده جزئیات</summary>
 
-                <p><strong>تلفن:</strong> <?php echo esc_html($order->get_billing_phone()); ?></p>
-                <p><strong>آدرس:</strong> <?php echo wp_kses_post($order->get_formatted_billing_address()); ?></p>
-                <p><strong>یادداشت مشتری:</strong> <?php echo esc_html($order->get_customer_note()); ?></p>
+                <div class="rm-order-details-inner">
 
-                <!-- Status update -->
-                <div class="rm-order-status-change">
-                    <h6>وضعیت سفارش:</h6>
-                    <select class="rm-order-status" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
-                        <?php foreach (wc_get_order_statuses() as $key => $label) : ?>
-                            <?php $status = str_replace('wc-', '', $key); ?>
-                            <option value="<?php echo esc_attr($status); ?>"
-                                <?php selected($order->get_status(), $status); ?>>
-                                <?php echo esc_html($label); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <div class="rm-order-status-notice" style="display:none;"></div>
+                    <p><strong>تلفن:</strong> <?php echo esc_html($order->get_billing_phone()); ?></p>
+
+                    <p><strong>آدرس صورتحساب:</strong>
+                        <?php echo wp_kses_post($order->get_formatted_billing_address()); ?>
+                    </p>
+                    <p><strong>یادداشت مشتری:</strong>
+                        <?php echo esc_html($order->get_customer_note()); ?>
+                    </p>
+
+                    <p><strong>روش تحویل:</strong>
+                        <?php echo esc_html($order->get_shipping_method()); ?>
+                    </p>
+                    <!-- Status update -->
+                    <div class="rm-order-status-change">
+                        <h6>وضعیت سفارش:</h6>
+                        <select class="rm-order-status" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
+                            <?php foreach (wc_get_order_statuses() as $key => $label) : ?>
+                                <?php $status = str_replace('wc-', '', $key); ?>
+                                <option value="<?php echo esc_attr($status); ?>"
+                                    <?php selected($order->get_status(), $status); ?>>
+                                    <?php echo esc_html($label); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="rm-order-status-notice" style="display:none;"></div>
+                    </div>
+
                 </div>
-
             </details>
+
         </div>
 
     <?php endforeach; ?>

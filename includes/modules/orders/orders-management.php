@@ -58,6 +58,7 @@ function rm_get_orders_for_dashboard() {
             'address'  => $order->get_formatted_billing_address(),
             'payment'  => $order->get_payment_method_title(),
             'note'     => $order->get_customer_note(),
+            'shipping' => $order->get_shipping_method(),
         ];
     }
 
@@ -73,10 +74,6 @@ function rm_enqueue_order_scripts() {
             true
         );
 
-//        wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
-//            'ajax_url' => admin_url('admin-ajax.php'),
-//            'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS')
-//        ]);
         wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS'),

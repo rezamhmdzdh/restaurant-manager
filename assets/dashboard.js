@@ -27,23 +27,49 @@ jQuery(document).ready(function ($) {
 });
 
 
-let rmNewOrderNotified = false;
+let rmAudioUnlocked = false;
+let rmNotified = false;
 
+function rmUnlockAudio() {
+
+    if (rmAudioUnlocked) return;
+    rmAudioUnlocked = true;
+
+    const audio = document.getElementById('rm-new-order-sound');
+    if (!audio) return;
+
+    audio.muted = true;
+    audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.muted = false;
+    }).catch(() => {
+
+    });
+}
+
+['click', 'keydown', 'touchstart', 'wheel'].forEach(event => {
+    document.addEventListener(event, rmUnlockAudio, {once: true});
+});
+
+// new order notif
 function rmNotifyNewOrder() {
 
-    if (rmNewOrderNotified) return;
-    rmNewOrderNotified = true;
+    if (rmNotified) return;
+    rmNotified = true;
 
     const modal = document.getElementById('rm-new-order-modal');
-    if (modal) {
-        modal.style.display = 'flex';
-    }
+    if (modal) modal.style.display = 'flex';
+
     const audio = document.getElementById('rm-new-order-sound');
-    if (audio) {
+    if (audio && rmAudioUnlocked) {
         audio.currentTime = 0;
         audio.play().catch(() => {
-            console.warn('Audio play blocked');
         });
+    }
+
+    if ('vibrate' in navigator) {
+        navigator.vibrate([200, 100, 200]);
     }
 }
 

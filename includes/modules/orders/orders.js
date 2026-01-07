@@ -40,7 +40,6 @@ document.addEventListener('change', function (e) {
 });
 
 
-
 const pageLoadedAt = rm_orders_ajax.page_loaded_at;
 
 setInterval(checkNewOrder, 30000);

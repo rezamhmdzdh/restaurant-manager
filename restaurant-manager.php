@@ -18,12 +18,10 @@ define('RM_VER',  '1.5.3');
 
 /**
  * Register the dashboard shortcode.
- * This shortcode renders the complete restaurant management dashboard.
  */
 add_shortcode('restaurant_dashboard', 'rm_dashboard_shortcode');
 
 function rm_dashboard_shortcode() {
-    // Restrict access to authorized users (adjust capability as needed)
     if (!current_user_can('manage_options')) {
         return '<p style="color:red; text-align:center;">شما دسترسی لازم برای مشاهده این صفحه را ندارید.</p>';
     }

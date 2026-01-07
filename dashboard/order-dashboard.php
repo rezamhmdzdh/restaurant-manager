@@ -86,7 +86,6 @@ $orders = wc_get_orders([
 
                 </div>
             </details>
-
         </div>
 
     <?php endforeach; ?>

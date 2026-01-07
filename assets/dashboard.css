@@ -310,202 +310,16 @@ th {
     color: #019142;
 }
 
-.delete-btn {
-    background-color: #fee2e2;
-    color: var(--danger-color);
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    width: 90%;
-    max-width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.modal-actions button {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-}
-
-.modal-actions button[type="button"] {
-    background-color: #e2e8f0;
-    border: none;
-}
-
-.modal-actions button[type="submit"] {
-    background-color: #019142;
-    color: white;
-    border: none;
-}
-
 .hidden {
     display: none;
 }
 
-/* Submenu Styles */
-.nav-group.active .nav-submenu {
-    display: block;
-}
-
 /* Table Styles */
+
 .table-container {
     background-color: white;
     border-radius: 0.5rem;
     overflow: hidden;
-}
-
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.data-table th,
-.data-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.data-table th {
-    background-color: #f8fafc;
-    font-weight: 600;
-    color: #4D4D4D;
-}
-
-/* Enhanced Modal Styles */
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #4D4D4D;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Order Items Table Styles */
-.order-items {
-    margin: 1.5rem 0;
-}
-
-.order-items h3 {
-    margin-bottom: 1rem;
-}
-
-.order-items-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-}
-
-.order-items-table th,
-.order-items-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.order-summary {
-    background-color: #f8fafc;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-}
-
-.summary-row.total {
-    border-top: 1px solid #e2e8f0;
-    margin-top: 0.5rem;
-    padding-top: 1rem;
-    font-weight: 600;
-}
-
-/* Button Styles */
-.cancel-btn {
-    background-color: #e2e8f0;
-    color: #4D4D4D;
-}
-
-.submit-btn {
-    background-color: #019142;
-    color: white;
-}
-
-.action-btn {
-    padding: 0.5rem;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-}
-
-.edit-btn {
-    background-color: #dbeafe;
-    color: #019142;
-}
-
-.delete-btn {
-    background-color: #fee2e2;
-    color: var(--danger-color);
 }
 
 #rm-dashboard .page-header button {
@@ -589,64 +403,70 @@ th {
     color: #B21C28;
 }
 
-
 /* orders page */
 
-.status-pending {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-processing {
-    background: #d1ecf1;
-    color: #0c5460;
-}
-
-.status-completed {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-cancelled {
-    background: #f8d7da;
-    color: #721c24;
+.rm-orders {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /*orders*/
+
 .rm-order-card {
     border: 1px solid #eee;
     border-radius: 12px;
     padding: 12px;
-    /*background: #fff;*/
+    font-size: 14px;
 }
 
-.rm-order-summary {
-    cursor: pointer;
-    list-style: none;
+/*status card color */
+
+.rm-order-card.status-on-hold {
+    background: #fcefd7;
 }
 
-.rm-order-main {
+.rm-order-card.status-processing {
+    background-color: #D0E8D0;
+}
+
+.rm-order-card.status-completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.rm-order-card.status-cancelled {
+    background: #FFD2CF;
+}
+/*------------- */
+
+.rm-order-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
 }
 
-.rm-order-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: #555;
+.rm-order-header .rm-status {
+    background-color: #FFF;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
 }
 
 .rm-order-details {
-    margin-top: 12px;
-    border-top: 1px dashed #ddd;
-    padding-top: 10px;
+    padding: 10px;
+    border: 1px solid #DDD;
+    background-color: #F6F7F7;
+    border-radius: 8px;
 }
 
-.rm-order-items {
-    padding-left: 16px;
-    margin-bottom: 10px;
+.rm-order-items ul {
+    margin: 10px 0;
+    padding-right: 20px;
+}
+
+.rm-order-status-change {
+    border: 2px dashed #019142;
+    padding: 8px;
 }
 
 .rm-order-status {
@@ -654,23 +474,12 @@ th {
     border-radius: 6px;
     font-size: 12px;
     background: #f1f1f1;
+    outline: none;
+    margin: 8px 0;
 }
-
-/* status colors */
-.status-processing {
-    background: #fff3cd;
-}
-
-.status-completed {
-    background: #d4edda;
-}
-
-.status-pending {
-    background: #f8d7da;
-}
-
 
 /*--------------------*/
+
 #rm-new-order-modal {
     background-color: #FFFFFF;
     width: 100%;
@@ -679,7 +488,7 @@ th {
     padding: 30px;
     text-align: center;
     border-radius: 24px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%);
@@ -690,6 +499,7 @@ th {
 
 #rm-new-order-modal .modal-head {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
@@ -699,7 +509,7 @@ th {
     height: 50px;
 }
 
-button#rm-refresh-orders {
+#rm-refresh-orders {
     color: #FFF;
     font-size: 14px;
     font-weight: 600;

@@ -27,17 +27,31 @@ jQuery(document).ready(function ($) {
 });
 
 
-function showNewOrderModal() {
+// function showNewOrderModal() {
+//
+//     const modal = document.getElementById('rm-new-order-modal');
+//     if (!modal) return;
+//
+//     modal.style.display = 'block';
+//
+//     document.getElementById('rm-refresh-orders')?.addEventListener('click', () => {
+//         location.reload();
+//     });
+// }
+document.addEventListener('click', function (e) {
 
-    const modal = document.getElementById('rm-new-order-modal');
-    if (!modal) return;
-
-    modal.style.display = 'block';
-
-    document.getElementById('rm-refresh-orders')?.addEventListener('click', () => {
+    if (e.target.id === 'rm-refresh-orders') {
         location.reload();
-    });
-}
+    }
+
+    if (e.target.id === 'close-modal') {
+        const modal = document.getElementById('rm-new-order-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+});
 
 
 function rmPlayNewOrderSound() {

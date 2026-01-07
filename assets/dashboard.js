@@ -30,27 +30,36 @@ jQuery(document).ready(function ($) {
 let rmAudioUnlocked = false;
 let rmNotified = false;
 
-function rmUnlockAudio() {
-
-    if (rmAudioUnlocked) return;
-    rmAudioUnlocked = true;
-
+document.getElementById('rm-enable-notification')?.addEventListener('click', () => {
     const audio = document.getElementById('rm-new-order-sound');
-    if (!audio) return;
 
-    audio.muted = true;
+    if (!audio) {
+        console.warn('[RM Audio] Audio element not found');
+        return;
+    }
+
     audio.play().then(() => {
         audio.pause();
         audio.currentTime = 0;
-        audio.muted = false;
-    }).catch(() => {
 
+        rmAudioUnlocked = true;
+
+        console.log('[RM Audio] Notifications enabled');
+
+        // تغییر متن دکمه
+        const btn = document.getElementById('rm-enable-notification');
+        if (btn) {
+            btn.textContent = '✅ اعلان فعال شد';
+            btn.disabled = true;
+            btn.classList.add('rm-enabled');
+        }
+
+    }).catch(err => {
+        console.error('[RM Audio] Enable notification failed:', err.name, err.message);
+        alert('مرورگر اجازه فعال‌سازی صدا را نداد');
     });
-}
-
-['click', 'keydown', 'touchstart', 'wheel'].forEach(event => {
-    document.addEventListener(event, rmUnlockAudio, {once: true});
 });
+
 
 // new order notif
 function rmNotifyNewOrder() {
@@ -64,12 +73,13 @@ function rmNotifyNewOrder() {
     const audio = document.getElementById('rm-new-order-sound');
     if (audio && rmAudioUnlocked) {
         audio.currentTime = 0;
-        audio.play().catch(() => {
+        audio.play().catch(err => {
+            console.warn('[RM Audio] Play blocked:', err.message);
         });
     }
 
     if ('vibrate' in navigator) {
-        navigator.vibrate([200, 100, 200]);
+        navigator.vibrate([500, 200, 500, 200, 500]);
     }
 }
 
@@ -78,7 +88,7 @@ document.addEventListener('click', function (e) {
         location.reload();
     }
 
-    if (e.target.id === 'cloce-modal') {
+    if (e.target.id === 'close-modal') {
         const modal = document.getElementById('rm-new-order-modal');
         if (modal) {
             modal.style.display = 'none';

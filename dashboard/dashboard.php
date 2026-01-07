@@ -31,6 +31,11 @@
         <div class="content" id="orders-page">
             <div class="page-header">
                 <h3>مدیریت سفارش‌ها</h3>
+
+                <button id="rm-enable-notification" class="rm-enable-notification">
+                    🔔 فعال‌سازی اعلان
+                </button>
+
             </div>
 
             <div class="table-container">

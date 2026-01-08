@@ -54,9 +54,7 @@ document.getElementById('rm-enable-notification')?.addEventListener('click', () 
         audio.currentTime = 0;
 
         rmAudioUnlocked = true;
-
         console.log('Notifications enabled');
-
 
         const btn = document.getElementById('rm-enable-notification');
         if (btn) {

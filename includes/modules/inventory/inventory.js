@@ -1,11 +1,11 @@
 document.getElementById('rm-load-products')?.addEventListener('click', () => {
 
-    fetch(rm_inventory_ajx.ajax_url, {
+    fetch(rm_inventory_ajax.ajax_url, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: new URLSearchParams({
             action: 'rm_inventory_get_products',
-            nonce: rm_inventory_ajx.nonce
+            nonce: rm_inventory_ajax.nonce
         })
     })
 
@@ -35,12 +35,12 @@ document.addEventListener('click', function (e) {
 
     message.innerHTML = 'در حال ذخیره...';
 
-    fetch(rm_inventory_ajx.ajax_url, {
+    fetch(rm_inventory_ajax.ajax_url, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: new URLSearchParams({
             action: 'rm_inventory_update_product',
-            nonce: rm_inventory_ajx.nonce,
+            nonce: rm_inventory_ajax.nonce,
             product_id: productId,
             stock: stock,
         })
@@ -67,12 +67,12 @@ document.addEventListener('click', function (e) {
 
     message.innerHTML = 'در حال ناموجود کردن...';
 
-    fetch(rm_inventory_ajx.ajax_url, {
+    fetch(rm_inventory_ajax.ajax_url, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: new URLSearchParams({
             action: 'rm_inventory_mark_outofstock',
-            nonce: rm_inventory_ajx.nonce,
+            nonce: rm_inventory_ajax.nonce,
             product_id: productId
         })
     })

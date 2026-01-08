@@ -6,7 +6,7 @@ add_action('wp_ajax_rm_inventory_get_products', 'rm_inventory_get_products_ajax'
 
 function rm_inventory_get_products_ajax()
 {
-    check_ajax_referer('RM_UPDATE_PRODUCTS_INVENTORY', 'nonce');
+    check_ajax_referer('RM_UPDATE_INVENTORY', 'nonce');
 
     if (!current_user_can('manage_options')) {
         wp_send_json_error(['message' => 'دسترسی ممنوع']);
@@ -30,7 +30,7 @@ add_action('wp_ajax_rm_inventory_update_product', 'rm_inventory_update_product_a
 function rm_inventory_update_product_ajax()
 {
 
-    check_ajax_referer('RM_UPDATE_PRODUCTS_INVENTORY', 'nonce');
+    check_ajax_referer('RM_UPDATE_INVENTORY', 'nonce');
 
     if (!current_user_can('manage_options')) {
         wp_send_json_error('no_access');
@@ -57,7 +57,7 @@ function rm_inventory_update_product_ajax()
 add_action('wp_ajax_rm_inventory_mark_outofstock', 'rm_inventory_mark_outofstock_ajax');
 function rm_inventory_mark_outofstock_ajax()
 {
-    check_ajax_referer('RM_UPDATE_PRODUCTS_INVENTORY', 'nonce');
+    check_ajax_referer('RM_UPDATE_INVENTORY', 'nonce');
 
     $product_id = intval($_POST['product_id']);
 

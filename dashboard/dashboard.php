@@ -34,6 +34,23 @@
                 <button id="rm-enable-notification" class="rm-enable-notification">
                     🔔 فعال‌سازی اعلان
                 </button>
+
+                <div class="rm-orders-filter">
+                    <label for="rm-filter-status">فیلتر سفارشات:</label>
+                    <select id="rm-filter-status">
+                        <option value="">همه سفارش‌ها</option>
+
+                        <?php foreach (wc_get_order_statuses() as $key => $label) :
+                            $status = str_replace('wc-', '', $key);
+                            ?>
+                            <option value="<?php echo esc_attr($status); ?>">
+                                <?php echo esc_html($label); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+
             </div>
 
             <div class="table-container">

@@ -17,7 +17,7 @@ function rm_get_orders_for_dashboard() {
     }
 
     $query = new WC_Order_Query([
-        'limit'   => 10,
+//        'limit'   => 10,
         'orderby' => 'date',
         'order'   => 'DESC',
         'return'  => 'objects',

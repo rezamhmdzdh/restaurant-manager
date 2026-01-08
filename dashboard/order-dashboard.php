@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
  * Get orders
  */
 $orders = wc_get_orders([
-    'limit' => 20,
+    'limit' => 30,
     'orderby' => 'date',
     'order' => 'DESC',
 ]);

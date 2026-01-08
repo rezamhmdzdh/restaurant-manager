@@ -40,7 +40,6 @@ document.addEventListener('click', function (e) {
 });
 
 
-
 let rmAudioUnlocked = false;
 let rmNotified = false;
 
@@ -90,3 +89,19 @@ function rmNotifyNewOrder() {
     }
 }
 
+// filter orders
+document.getElementById('rm-filter-status')?.addEventListener('change', function () {
+    const selectedStatus = this.value;
+    const orders = document.querySelectorAll('.rm-order-card');
+
+    orders.forEach(order => {
+        if (!selectedStatus) {
+            order.style.display = '';
+            return;
+        }
+
+        order.style.display = order.classList.contains('status-' + selectedStatus)
+            ? ''
+            : 'none';
+    });
+});

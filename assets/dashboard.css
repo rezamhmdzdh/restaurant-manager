@@ -471,6 +471,7 @@ th {
     margin: 10px 0;
     padding-right: 20px;
 }
+
 .rm-order-status-change {
     border: 2px dashed #019142;
     padding: 8px;
@@ -548,4 +549,15 @@ th {
     border: unset;
     font-weight: 600;
     cursor: pointer;
+}
+
+#rm-dashboard .page-header .rm-enable-notification {
+    background-color: #D40E1F;
+    border: 2px solid transparent;
+}
+
+#rm-dashboard .page-header .rm-enable-notification.rm-enabled {
+    background-color: transparent;
+    border-color: #019142;
+    color: #019142;
 }

@@ -30,7 +30,6 @@ function rm_dashboard_shortcode() {
     include RM_PATH . 'dashboard/dashboard.php';
     return ob_get_clean();
 }
-
 /**
  * Load all module management files.
  * Since all tabs load on the same page, we include modules upfront for simplicity and performance.

@@ -25,6 +25,20 @@ jQuery(document).ready(function ($) {
         }
     });
 });
+document.addEventListener('click', function (e) {
+    if (e.target.id === 'rm-refresh-orders') {
+        location.reload();
+    }
+
+    if (e.target.id === 'close-modal') {
+        const modal = document.getElementById('rm-new-order-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+});
+
 
 
 let rmAudioUnlocked = false;
@@ -33,10 +47,7 @@ let rmNotified = false;
 document.getElementById('rm-enable-notification')?.addEventListener('click', () => {
     const audio = document.getElementById('rm-new-order-sound');
 
-    if (!audio) {
-        console.warn('[RM Audio] Audio element not found');
-        return;
-    }
+    if (!audio) return;
 
     audio.play().then(() => {
         audio.pause();
@@ -44,9 +55,9 @@ document.getElementById('rm-enable-notification')?.addEventListener('click', () 
 
         rmAudioUnlocked = true;
 
-        console.log('[RM Audio] Notifications enabled');
+        console.log('Notifications enabled');
 
-        // تغییر متن دکمه
+
         const btn = document.getElementById('rm-enable-notification');
         if (btn) {
             btn.textContent = '✅ اعلان فعال شد';
@@ -55,11 +66,10 @@ document.getElementById('rm-enable-notification')?.addEventListener('click', () 
         }
 
     }).catch(err => {
-        console.error('[RM Audio] Enable notification failed:', err.name, err.message);
+        console.error('Enable notification failed:', err.name, err.message);
         alert('مرورگر اجازه فعال‌سازی صدا را نداد');
     });
 });
-
 
 // new order notif
 function rmNotifyNewOrder() {
@@ -74,7 +84,6 @@ function rmNotifyNewOrder() {
     if (audio && rmAudioUnlocked) {
         audio.currentTime = 0;
         audio.play().catch(err => {
-            console.warn('[RM Audio] Play blocked:', err.message);
         });
     }
 
@@ -82,18 +91,4 @@ function rmNotifyNewOrder() {
         navigator.vibrate([500, 200, 500, 200, 500]);
     }
 }
-
-document.addEventListener('click', function (e) {
-    if (e.target.id === 'rm-refresh-orders') {
-        location.reload();
-    }
-
-    if (e.target.id === 'close-modal') {
-        const modal = document.getElementById('rm-new-order-modal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-});
 

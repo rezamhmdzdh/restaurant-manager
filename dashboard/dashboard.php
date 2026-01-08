@@ -26,7 +26,6 @@
     </aside>
     <!-- Main Content -->
     <main class="main-content">
-
         <!-- Orders Page -->
         <div class="content" id="orders-page">
             <div class="page-header">
@@ -35,7 +34,6 @@
                 <button id="rm-enable-notification" class="rm-enable-notification">
                     🔔 فعال‌سازی اعلان
                 </button>
-
             </div>
 
             <div class="table-container">

@@ -323,18 +323,18 @@ th {
     overflow: hidden;
 }
 
-#rm-dashboard .page-header button {
-    color: #FFF;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: all ease .15s;
-    cursor: pointer;
-    outline: none;
-    background: #019142;
-    border: unset;
-}
+/*#rm-dashboard .page-header button {*/
+/*    color: #FFF;*/
+/*    font-size: 14px;*/
+/*    font-weight: 600;*/
+/*    padding: 10px 16px;*/
+/*    border-radius: 8px;*/
+/*    transition: all ease .15s;*/
+/*    cursor: pointer;*/
+/*    outline: none;*/
+/*    background: #019142;*/
+/*    border: unset;*/
+/*}*/
 
 .rm-product-card .rm-field {
     display: flex;
@@ -454,6 +454,13 @@ th {
     font-size: 12px;
 }
 
+.rm-order-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
 .rm-order-details {
     border: 1px solid #DDD;
     background-color: #F6F7F7;
@@ -555,6 +562,14 @@ th {
 #rm-dashboard .page-header .rm-enable-notification {
     background-color: #D40E1F;
     border: 2px solid transparent;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all ease .15s;
+    cursor: pointer;
+    outline: none;
 }
 
 #rm-dashboard .page-header .rm-enable-notification.rm-enabled {
@@ -563,19 +578,74 @@ th {
     color: #019142;
 }
 
-
-/*filter orders*/
-.rm-orders-filter {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    font-size: 14px;
-    gap: 12px;
-}
-
 .rm-orders-filter #rm-filter-status {
     max-width: 200px;
     background-color: #FFF;
     outline-color: #019142;
     padding: 10px;
+}
+
+#rm-dashboard .rm-btn-primary {
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all ease .15s;
+    cursor: pointer;
+    outline: none;
+    background: #019142;
+    border: unset;
+}
+#rm-dashboard .rm-btn-secondary {
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all ease .15s;
+    cursor: pointer;
+    outline: none;
+    border: unset;
+    background-color: transparent;
+    border: 1px dashed #019142;
+    color: #000;
+}
+
+
+/* filter tabs style*/
+.rm-orders-tabs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    gap: 12px;
+    overflow: auto;
+    margin: 10px 0;
+}
+
+.rm-tab {
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.rm-tab.active {
+    background: #019142;
+    color: #fff;
+}
+
+.rm-count {
+    background: #ddd;
+    padding: 2px 6px;
+    border-radius: 12px;
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.rm-tab.active .rm-count {
+    background: #fff;
+    color: #000;
 }

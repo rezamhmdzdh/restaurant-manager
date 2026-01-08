@@ -90,18 +90,27 @@ function rmNotifyNewOrder() {
 }
 
 // filter orders
-document.getElementById('rm-filter-status')?.addEventListener('change', function () {
-    const selectedStatus = this.value;
-    const orders = document.querySelectorAll('.rm-order-card');
 
-    orders.forEach(order => {
-        if (!selectedStatus) {
-            order.style.display = '';
-            return;
-        }
+document.querySelectorAll('.rm-tab').forEach(tab => {
 
-        order.style.display = order.classList.contains('status-' + selectedStatus)
-            ? ''
-            : 'none';
+    tab.addEventListener('click', function () {
+
+        const status = this.dataset.status;
+
+        document.querySelectorAll('.rm-tab')
+            .forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        document.querySelectorAll('.rm-order-card').forEach(card => {
+
+            if (!status) {
+                card.style.display = '';
+                return;
+            }
+
+            card.style.display = card.classList.contains('status-' + status)
+                ? ''
+                : 'none';
+        });
     });
 });

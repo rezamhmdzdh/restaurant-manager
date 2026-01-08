@@ -1,16 +1,3 @@
-<?php
-defined('ABSPATH') || exit;
-
-/**
- * Get orders
- */
-$orders = wc_get_orders([
-    'limit' => 30,
-    'orderby' => 'date',
-    'order' => 'DESC',
-]);
-?>
-
 <div class="rm-orders">
 
     <?php if (empty($orders)) : ?>
@@ -31,31 +18,33 @@ $orders = wc_get_orders([
             <!-- Main info -->
             <div class="rm-order-main">
                 <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?> </p>
-            </div>
 
-            <!-- Items -->
-            <div class="rm-order-items">
-                <strong>اقلام:</strong>
-                <ul>
-                    <?php foreach ($order->get_items() as $item) : ?>
-                        <li>
-                            <?php echo esc_html($item->get_name()); ?>
-                            <span class="rm-order-items-quantity">
+                <p><strong>مبلغ:</strong> <?php echo $order->get_formatted_order_total(); ?></p>
+            </div>
+            <!-- Accordion -->
+            <details class="rm-order-details">
+                <summary>مشاهده جزئیات</summary>
+                <div class="rm-order-details-inner">
+
+                    <!-- Items -->
+                    <div class="rm-order-items">
+                        <strong>اقلام:</strong>
+                        <ul>
+                            <?php foreach ($order->get_items() as $item) : ?>
+                                <li>
+                                    <?php echo esc_html($item->get_name()); ?>
+                                    <span class="rm-order-items-quantity">
                                 <?php echo $item->get_quantity(); ?>
                                 عدد
                             </span>
 
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <p><strong>مبلغ:</strong> <?php echo $order->get_formatted_order_total(); ?></p>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
 
-            <!-- Accordion -->
-            <details class="rm-order-details">
-                <summary>مشاهده جزئیات</summary>
-
-                <div class="rm-order-details-inner">
+                    <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?>
+                    </p>
 
                     <p><strong>تلفن:</strong> <?php echo esc_html($order->get_billing_phone()); ?></p>
 
@@ -71,17 +60,30 @@ $orders = wc_get_orders([
                     </p>
                     <!-- Status update -->
                     <div class="rm-order-status-change">
-                        <h4>وضعیت سفارش:</h4>
-                        <select class="rm-order-status" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
-                            <?php foreach (wc_get_order_statuses() as $key => $label) : ?>
-                                <?php $status = str_replace('wc-', '', $key); ?>
-                                <option value="<?php echo esc_attr($status); ?>"
-                                    <?php selected($order->get_status(), $status); ?>>
-                                    <?php echo esc_html($label); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div class="rm-order-status-notice" style="display:none;"></div>
+                        <div class="rm-order-actions" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
+
+                            <?php if ($order->has_status('on-hold')) : ?>
+                                <button class="rm-action-btn cancel rm-btn-secondary" data-status="cancelled">
+                                    لغو سفارش
+                                </button>
+
+                                <button class="rm-action-btn confirm rm-btn-primary" data-status="processing">
+                                    تأیید سفارش
+                                </button>
+
+                            <?php elseif ($order->has_status('processing')) : ?>
+
+                                <button class="rm-action-btn on-way rm-btn-primary" data-status="on-way">
+                                    تحویل به پیک
+                                </button>
+                            <?php elseif ($order->has_status('on-way')) : ?>
+                                <button class="rm-action-btn completed rm-btn-primary" data-status="completed">
+                                    تکمیل سفارش
+                                </button>
+                            <?php endif; ?>
+
+                            <div class="rm-order-status-notice" style="display:none;"></div>
+                        </div>
                     </div>
 
                 </div>

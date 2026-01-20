@@ -8,7 +8,7 @@ function rm_inventory_get_products_ajax()
 {
     check_ajax_referer('RM_UPDATE_INVENTORY', 'nonce');
 
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('manage_woocommerce')) {
         wp_send_json_error(['message' => 'دسترسی ممنوع']);
     }
 
@@ -32,7 +32,7 @@ function rm_inventory_update_product_ajax()
 
     check_ajax_referer('RM_UPDATE_INVENTORY', 'nonce');
 
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('manage_woocommerce')) {
         wp_send_json_error('no_access');
     }
 

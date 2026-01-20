@@ -36,11 +36,12 @@
 .nav-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    font-size: 14px;
+    gap: 5px;
+    padding: 5px 12px;
     text-decoration: none;
     color: #4D4D4D;
-    border-radius: 0.5rem;
+    border-radius: 6px;
     transition: all 0.3s ease;
 }
 
@@ -390,7 +391,7 @@ th {
 }
 
 #rm-dashboard .nav-item .menu-icon {
-    width: 24px;
+    width: 20px;
     height: auto;
 }
 
@@ -597,6 +598,7 @@ th {
     background: #019142;
     border: unset;
 }
+
 #rm-dashboard .rm-btn-secondary {
     color: #FFF;
     font-size: 14px;
@@ -619,9 +621,11 @@ th {
     align-items: center;
     width: 100%;
     font-size: 14px;
-    gap: 12px;
+    gap: 8px;
     overflow: auto;
-    margin: 10px 0;
+    /*margin: 10px 0;*/
+    text-wrap: nowrap;
+    padding: 10px 0;
 }
 
 .rm-tab {

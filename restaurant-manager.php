@@ -25,6 +25,8 @@ function rm_dashboard_shortcode() {
     if (!current_user_can('manage_options')) {
         return '<p style="color:red; text-align:center;">شما دسترسی لازم برای مشاهده این صفحه را ندارید.</p>';
     }
+    rm_enqueue_assets();
+    rm_enqueue_order_scripts();
 
     ob_start();
     include RM_PATH . 'dashboard/dashboard.php';
@@ -41,7 +43,8 @@ require_once RM_PATH . 'includes/modules/orders/orders-management.php';
  * Enqueue dashboard assets.
  * Assets are only loaded when the shortcode is present (via wp_enqueue_scripts priority).
  */
-add_action('wp_enqueue_scripts', 'rm_enqueue_assets');
+
+//add_action('wp_enqueue_scripts', 'rm_enqueue_assets');
 function rm_enqueue_assets() {
     wp_enqueue_style(
         'rm-dashboard-css',
@@ -58,6 +61,26 @@ function rm_enqueue_assets() {
         true
     );
 }
+
+function rm_enqueue_order_scripts() {
+
+    wp_enqueue_script(
+        'rm-orders-js',
+        RM_URL . 'includes/modules/orders/orders.js',
+        ['jquery'],
+        '1.0.0',
+        true
+    );
+
+    wp_localize_script('rm-orders-js', 'rm_orders_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('RM_UPDATE_ORDER_STATUS'),
+        'page_loaded_at' => time(),
+    ]);
+
+
+}
+
 function rm_hide_admin_bar_on_dashboard($show) {
     if (is_page('restaurant-dashboard')) {
         return false;

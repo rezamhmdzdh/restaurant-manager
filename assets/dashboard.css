@@ -406,7 +406,6 @@ th {
 }
 
 /* orders page */
-
 .rm-orders {
     display: flex;
     flex-direction: column;
@@ -423,7 +422,6 @@ th {
 }
 
 /*status card color */
-
 .rm-order-card.status-on-hold {
     background: #fcefd7;
 }
@@ -652,4 +650,48 @@ th {
 .rm-tab.active .rm-count {
     background: #fff;
     color: #000;
+}
+
+/*modal*/
+
+.rm-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
+    z-index: 9998;
+}
+
+.rm-order-modal {
+    position: fixed;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(620px, 92vw);
+    max-height: 80vh;
+    background: #fff;
+    border-radius: 14px;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.rm-order-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.rm-order-modal__body {
+    padding: 12px 14px;
+    overflow: auto;
+    max-height: calc(80vh - 52px);
+}
+
+.rm-order-modal__close {
+    font-size: 22px;
+    line-height: 1;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
 }

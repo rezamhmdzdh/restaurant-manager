@@ -114,3 +114,81 @@ document.querySelectorAll('.rm-tab').forEach(tab => {
         });
     });
 });
+// ===========================
+// Order modal (open/close)
+// ===========================
+
+// Helper: lock/unlock page scroll when modal is open
+function rmSetBodyScrollLocked(locked) {
+    document.body.style.overflow = locked ? 'hidden' : '';
+}
+
+// Open modal when clicking on an order card
+document.addEventListener('click', function (e) {
+    // Do nothing if click is inside the modal itself
+    if (e.target.closest('#rm-order-modal')) return;
+
+    const card = e.target.closest('.rm-order-card');
+    if (!card) return;
+
+    // Don't open modal when clicking on action buttons inside the card
+    if (e.target.closest('.rm-action-btn')) return;
+
+    const tpl = card.querySelector('.rm-order-details-template');
+    if (!tpl) return;
+
+    const overlay = document.getElementById('rm-modal-overlay');
+    const modal   = document.getElementById('rm-order-modal');
+    const body    = document.getElementById('rm-order-modal__body');
+    const title   = document.getElementById('rm-order-modal__title');
+
+    // Safety checks
+    if (!overlay || !modal || !body || !title) return;
+
+    const orderId = card.dataset.orderId || '';
+
+    title.textContent = orderId ? `جزئیات سفارش #${orderId}` : 'جزئیات سفارش';
+    body.innerHTML = tpl.innerHTML;
+
+    overlay.style.display = 'block';
+    modal.style.display = 'block';
+
+    rmSetBodyScrollLocked(true);
+});
+
+// Close modal
+function rmCloseOrderModal() {
+    const overlay = document.getElementById('rm-modal-overlay');
+    const modal   = document.getElementById('rm-order-modal');
+    const body    = document.getElementById('rm-order-modal__body');
+
+    if (modal) modal.style.display = 'none';
+    if (overlay) overlay.style.display = 'none';
+    if (body) body.innerHTML = '';
+
+    rmSetBodyScrollLocked(false);
+}
+
+// Close modal when clicking overlay or close button
+document.addEventListener('click', function (e) {
+    if (e.target.id === 'rm-modal-overlay' || e.target.id === 'rm-order-modal-close') {
+        rmCloseOrderModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') rmCloseOrderModal();
+});
+
+// Accessibility: open modal with Enter/Space when focusing the card
+document.addEventListener('keydown', function (e) {
+    const card = e.target.closest('.rm-order-card');
+    if (!card) return;
+
+    if (e.key === 'Enter' || e.key === ' ') {
+        // Prevent page scroll on Space
+        e.preventDefault();
+        card.click();
+    }
+});

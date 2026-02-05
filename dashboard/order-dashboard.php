@@ -5,25 +5,31 @@
     <?php endif; ?>
 
     <?php foreach ($orders as $order) : ?>
+        <?php
+        $order_id = $order->get_id();
+        $status_key = $order->get_status();
+        ?>
 
-        <div class="rm-order-card status-<?php echo esc_attr($order->get_status()); ?>">
+        <div class="rm-order-card status-<?php echo esc_attr($status_key); ?>"
+             data-order-id="<?php echo esc_attr($order_id); ?>"
+             role="button"
+             tabindex="0"
+             aria-label="<?php echo esc_attr('جزئیات سفارش #' . $order_id); ?>">
 
             <!-- Header -->
             <div class="rm-order-header">
-                سفارش #<?php echo $order->get_id(); ?>
-
-                <span class="rm-status"><?php echo wc_get_order_status_name($order->get_status()); ?></span>
+                سفارش #<?php echo esc_html($order_id); ?>
+                <span class="rm-status"><?php echo esc_html(wc_get_order_status_name($status_key)); ?></span>
             </div>
 
             <!-- Main info -->
             <div class="rm-order-main">
-                <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?> </p>
-
-                <p><strong>مبلغ:</strong> <?php echo $order->get_formatted_order_total(); ?></p>
+                <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?></p>
+                <p><strong>مبلغ:</strong> <?php echo wp_kses_post($order->get_formatted_order_total()); ?></p>
             </div>
-            <!-- Accordion -->
-            <details class="rm-order-details">
-                <summary>مشاهده جزئیات</summary>
+
+            <!-- Details template -->
+            <div class="rm-order-details-template" hidden>
                 <div class="rm-order-details-inner">
 
                     <!-- Items -->
@@ -34,50 +40,56 @@
                                 <li>
                                     <?php echo esc_html($item->get_name()); ?>
                                     <span class="rm-order-items-quantity">
-                                <?php echo $item->get_quantity(); ?>
-                                عدد
-                            </span>
-
+                                      <?php echo (int) $item->get_quantity(); ?> عدد
+                                    </span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
 
+                    <!-- Customer name -->
                     <p><strong>نام مشتری:</strong> <?php echo esc_html($order->get_formatted_billing_full_name()); ?>
                     </p>
 
-                    <p><strong>تلفن:</strong> <?php echo esc_html($order->get_billing_phone()); ?></p>
+                    <!-- Payment type -->
+                    <p><strong>نوع پرداخت:</strong> <?php echo esc_html($order->get_payment_method_title()); ?></p>
 
-                    <p><strong>آدرس صورتحساب:</strong>
-                        <?php echo wp_kses_post($order->get_formatted_billing_address()); ?>
-                    </p>
-                    <p><strong>یادداشت مشتری:</strong>
-                        <?php echo esc_html($order->get_customer_note()); ?>
-                    </p>
+                    <!-- Phone -->
+                    <p><strong>شماره همراه:</strong> <?php echo esc_html($order->get_billing_phone()); ?></p>
 
-                    <p><strong>روش تحویل:</strong>
-                        <?php echo esc_html($order->get_shipping_method()); ?>
-                    </p>
-                    <!-- Status update -->
+                    <!-- Address -->
+                    <p><strong>آدرس:</strong> <?php echo wp_kses_post($order->get_formatted_billing_address()); ?></p>
+
+                    <!-- Shipping method -->
+                    <p><strong>روش تحویل:</strong> <?php echo esc_html($order->get_shipping_method()); ?></p>
+
+                    <!-- Optional note (if you still want it) -->
+                    <?php if ($order->get_customer_note()) : ?>
+                        <p><strong>یادداشت مشتری:</strong> <?php echo esc_html($order->get_customer_note()); ?></p>
+                    <?php endif; ?>
+
+                    <!-- Status update actions (keep as-is) -->
                     <div class="rm-order-status-change">
-                        <div class="rm-order-actions" data-order-id="<?php echo esc_attr($order->get_id()); ?>">
+                        <div class="rm-order-actions" data-order-id="<?php echo esc_attr($order_id); ?>">
 
                             <?php if ($order->has_status('on-hold')) : ?>
-                                <button class="rm-action-btn cancel rm-btn-secondary" data-status="cancelled">
+                                <button type="button" class="rm-action-btn cancel rm-btn-secondary"
+                                        data-status="cancelled">
                                     لغو سفارش
                                 </button>
-
-                                <button class="rm-action-btn confirm rm-btn-primary" data-status="processing">
+                                <button type="button" class="rm-action-btn confirm rm-btn-primary"
+                                        data-status="processing">
                                     تأیید سفارش
                                 </button>
 
                             <?php elseif ($order->has_status('processing')) : ?>
-
-                                <button class="rm-action-btn on-way rm-btn-primary" data-status="on-way">
+                                <button type="button" class="rm-action-btn on-way rm-btn-primary" data-status="on-way">
                                     تحویل به پیک
                                 </button>
+
                             <?php elseif ($order->has_status('on-way')) : ?>
-                                <button class="rm-action-btn completed rm-btn-primary" data-status="completed">
+                                <button type="button" class="rm-action-btn completed rm-btn-primary"
+                                        data-status="completed">
                                     تکمیل سفارش
                                 </button>
                             <?php endif; ?>
@@ -87,7 +99,10 @@
                     </div>
 
                 </div>
-            </details>
+            </div>
+            <!-- Details template -->
+
+
         </div>
 
     <?php endforeach; ?>

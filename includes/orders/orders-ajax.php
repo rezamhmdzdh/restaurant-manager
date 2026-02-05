@@ -7,6 +7,10 @@ function rm_change_order_status() {
 
     check_ajax_referer('RM_UPDATE_ORDER_STATUS', 'nonce');
 
+    if ( ! current_user_can('manage_woocommerce') ) {
+        wp_send_json_error('دسترسی ندارید');
+    }
+
     $order_id = intval($_POST['order_id'] ?? 0);
     $new_status = sanitize_text_field($_POST['status'] ?? '');
 

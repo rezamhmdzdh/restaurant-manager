@@ -55,42 +55,33 @@
 
                         <div class="detail-item">
                             <label>شماره همراه:</label>
-                            <?php echo esc_html($order->get_billing_phone()); ?>
+                            <span data-copy> <?php echo esc_html($order->get_billing_phone()); ?> </span>
                         </div>
 
                         <div class="detail-item">
                             <label>نوع پرداخت:</label>
-                            <?php echo esc_html($order->get_payment_method_title()); ?>
+                            <span data-copy> <?php echo esc_html($order->get_payment_method_title()); ?> </span>
                         </div>
 
                         <div class="detail-item">
                             <label>روش تحویل:</label>
-                            <?php echo esc_html($order->get_shipping_method()); ?>
+                            <span data-copy> <?php echo esc_html($order->get_shipping_method()); ?> </span>
                         </div>
 
-                        <div class="detail-item">
+                        <div class="detail-item w-100">
                             <label>آدرس:</label>
-                            <?php echo wp_kses_post($order->get_formatted_billing_address()); ?>
-                        </div>
-                        <div class="detail-item">
-                            <label>آدرس:</label>
-                            <div data-copy>
-                                <?php
-                                echo esc_html(trim($order->get_billing_address_1() . ' ' . $order->get_billing_address_2()));
-                                ?>
-                            </div>
+                            <span data-copy>
+                                <?php echo esc_html(trim($order->get_billing_address_1() . ' ' . $order->get_billing_address_2())); ?>
+                            </span>
                         </div>
 
 
                         <?php if ($order->get_customer_note()) : ?>
-                            <div class="detail-item">
+                            <div class="detail-item w-100">
                                 <label>یادداشت مشتری:</label>
-                                <?php echo esc_html($order->get_customer_note()); ?>
+                                <span data-copy> <?php echo esc_html($order->get_customer_note()); ?> </span>
                             </div>
                         <?php endif; ?>
-
-
-
                     </div>
 
                     <!-- Status update actions (keep as-is) -->
@@ -108,8 +99,7 @@
                                 </button>
 
                             <?php elseif ($order->has_status('processing')) : ?>
-                                <button type="button" class="rm-action-btn completed rm-btn-primary"
-                                        data-status="completed">
+                                <button type="button" class="rm-action-btn completed rm-btn-primary" data-status="completed">
                                     تکمیل سفارش
                                 </button>
 
@@ -130,16 +120,4 @@
 
     <?php endforeach; ?>
 
-</div>
-
-
-
-<div class="detail-item">
-    <label>آدرس:</label>
-
-    <span class="rm-copy-text" data-copy>
-    <?php echo esc_html(implode('، ', $addr)); ?>
-  </span>
-
-    <button type="button" class="rm-copy-btn" aria-label="Copy address">📋</button>
 </div>

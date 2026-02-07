@@ -704,3 +704,29 @@ th {
 }
 
 span[data-copy]{ cursor:pointer; user-select:text; }
+
+
+.rm-order-modal .rm-order-details-inner-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 10px;
+}
+.rm-order-modal .detail-item {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    border: 1px solid var(--reyhoon-stroke);
+    border-radius: 12px;
+    padding: 12px;
+    width: calc(50% - 10px);
+    font-size: 14px
+}
+.rm-order-modal .detail-item label {
+    font-size: 13px;
+    color: #646464;
+}
+.rm-order-modal .detail-item.w-100 {
+    width: 100%;
+}

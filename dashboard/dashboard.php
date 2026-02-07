@@ -1,3 +1,9 @@
+<?php
+$settings = function_exists('rm_get_settings') ? rm_get_settings() : [];
+$sound_url = $settings['new_order_sound_url'] ?? '';
+
+$sound_url = $sound_url ? esc_url($sound_url) : '';
+?>
 <div class="dashboard" id="rm-dashboard">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -145,6 +151,7 @@
 </div>
 
 <audio id="rm-new-order-sound" preload="auto">
-    <source src="https://dev.beirutelebanon.com/wp-content/plugins/reyhoon-pro/inc/modules/live-view-pro/assets/audio/ding.wav"
-            type="audio/mpeg">
+<?php if ($sound_url): ?>
+    <source src="<?php echo $sound_url; ?>">
+<?php endif; ?>
 </audio>

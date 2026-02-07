@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 
 //add_action('wp_enqueue_scripts', 'rm_enqueue_order_scripts');
 require_once __DIR__ . '/orders-ajax.php';
+require_once __DIR__ . '/order-delayed-sms.php';
 
 /**
  * Get full order data for dashboard

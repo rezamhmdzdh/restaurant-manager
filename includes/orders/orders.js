@@ -28,8 +28,10 @@ document.addEventListener('click', function (e) {
             if (res.success) {
                 notice.style.color = 'green';
                 notice.textContent = 'وضعیت سفارش بروزرسانی شد';
-
-                // setTimeout(() => location.reload(), 600);
+                location.reload();
+                setTimeout(
+                    () => location.reload()
+                    , 600);
 
             } else {
                 notice.style.color = 'red';

@@ -23,8 +23,8 @@ function rm_change_order_status() {
 
     $allowed_transitions = [
         'on-hold' => ['processing', 'cancelled'],
-        'processing' => ['on-way'],
-        'on-way' => ['completed'],
+        'processing' => ['completed'],
+//        'on-way' => ['completed'],
     ];
 
     if (

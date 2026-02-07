@@ -39,6 +39,8 @@ function rm_dashboard_shortcode() {
 require_once RM_PATH . 'includes/inventory/inventory.php';
 require_once RM_PATH . 'includes/orders/orders-management.php';
 
+require_once RM_PATH . 'includes/admin/settings-page.php';
+
 /**
  * Enqueue dashboard assets.
  */
@@ -100,6 +102,3 @@ add_filter('show_admin_bar', 'rm_hide_admin_bar_on_dashboard');
 
 //setting
 add_action('admin_menu', 'rm_register_settings_page');
-//add_action('admin_init', 'rm_register_settings');
-
-require_once RM_PATH . 'includes/admin/settings-page.php';

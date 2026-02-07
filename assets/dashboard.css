@@ -702,3 +702,5 @@ th {
     border-radius: 12px;
     line-height: 2;
 }
+
+span[data-copy]{ cursor:pointer; user-select:text; }

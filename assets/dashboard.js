@@ -192,3 +192,25 @@ document.addEventListener('keydown', function (e) {
         card.click();
     }
 });
+
+// Copy text from any element with [data-copy]
+document.addEventListener('click', async (e) => {
+    const el = e.target.closest('[data-copy]');
+    if (!el) return;
+
+    const text = (el.textContent || '').trim();
+    if (!text) return;
+
+    try {
+        await navigator.clipboard.writeText(text);
+        el.classList.add('copied');
+        setTimeout(() => el.classList.remove('copied'), 700);
+    } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+    }
+});

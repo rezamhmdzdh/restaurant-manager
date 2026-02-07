@@ -145,5 +145,6 @@
 </div>
 
 <audio id="rm-new-order-sound" preload="auto">
-<source src="https://dev.beirutelebanon.com/wp-content/plugins/reyhoon-pro/inc/modules/live-view-pro/assets/audio/ding.wav" type="audio/mpeg">
+    <source src="https://dev.beirutelebanon.com/wp-content/plugins/reyhoon-pro/inc/modules/live-view-pro/assets/audio/ding.wav"
+            type="audio/mpeg">
 </audio>

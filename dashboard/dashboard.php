@@ -90,10 +90,13 @@
         <div id="rm-modal-overlay" class="rm-modal-overlay" style="display:none;"></div>
 
         <div id="rm-order-modal" class="rm-order-modal" style="display:none;" role="dialog" aria-modal="true">
+
             <div class="rm-order-modal__header">
                 <div id="rm-order-modal__title">جزئیات سفارش</div>
+
                 <button type="button" id="rm-order-modal-close" class="rm-order-modal__close">×</button>
             </div>
+
             <div id="rm-order-modal__body" class="rm-order-modal__body"></div>
         </div>
         <!-- End Orders Page -->

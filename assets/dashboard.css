@@ -695,3 +695,10 @@ th {
     border: 0;
     cursor: pointer;
 }
+.rm-order-items {
+    background-color: #F6F7F7;
+    font-size: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    line-height: 2;
+}

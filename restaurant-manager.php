@@ -3,7 +3,7 @@
  * Plugin Name: Restaurant Manager
  * Plugin URI:  https://example.com/restaurant-manager
  * Description: Frontend restaurant management dashboard (Inventory, Orders, Reviews)
- * Version:     1.5.8
+ * Version:     1.6.0
  * Author:      Reza Mohammadzadeh
  * License:     GPL-2.0+
  * Text Domain: restaurant-manager
@@ -14,7 +14,7 @@ defined('ABSPATH') || exit;
 // Define plugin constants
 define('RM_PATH', plugin_dir_path(__FILE__));
 define('RM_URL',  plugin_dir_url(__FILE__));
-define('RM_VER',  '1.5.8');
+define('RM_VER',  '1.6.0');
 
 /**
  * Register the dashboard shortcode.
@@ -44,8 +44,6 @@ require_once RM_PATH . 'includes/admin/settings-page.php';
 /**
  * Enqueue dashboard assets.
  */
-
-//add_action('wp_enqueue_scripts', 'rm_enqueue_assets');
 function rm_enqueue_assets() {
     wp_enqueue_style(
         'rm-dashboard-css',

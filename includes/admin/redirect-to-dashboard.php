@@ -17,3 +17,22 @@ add_filter('login_redirect', function ($redirect_to, $requested_redirect_to, $us
     return $redirect_to;
 
 }, 10, 3);
+
+
+/**
+ * Redirect shop manager after WooCommerce login (My Account)
+ */
+
+add_filter('woocommerce_login_redirect', function ($redirect, $user) {
+
+    if (! $user || is_wp_error($user)) {
+        return $redirect;
+    }
+
+    if (in_array('shop_manager', (array) $user->roles, true)) {
+        return site_url('/restaurant-dashboard/');
+    }
+
+    return $redirect;
+
+}, 10, 2);

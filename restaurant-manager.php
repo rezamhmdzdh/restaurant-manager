@@ -40,6 +40,8 @@ require_once RM_PATH . 'includes/inventory/inventory.php';
 require_once RM_PATH . 'includes/orders/orders-management.php';
 
 require_once RM_PATH . 'includes/admin/settings-page.php';
+require_once RM_PATH . 'includes/admin/redirect-to-dashboard.php';
+require_once RM_PATH . 'includes/admin/dashboard-widget.php';
 
 /**
  * Enqueue dashboard assets.

@@ -3,7 +3,7 @@
 add_action('wp_dashboard_setup', function () {
 
 
-    if ( ! current_user_can('shop_manager') ) {
+    if ( ! current_user_can('manage_woocommerce') ) {
         return;
     }
 
@@ -12,15 +12,15 @@ add_action('wp_dashboard_setup', function () {
         'ورود به داشبورد مدیرت رستوران',
         'render_restaurant_dashboard_widget'
     );
-
-    global $wp_meta_boxes;
-
-    $widget = $wp_meta_boxes['dashboard']['normal']['core']['restaurant_dashboard_widget'] ?? null;
-    if (!$widget) return;
-
-    unset($wp_meta_boxes['dashboard']['normal']['core']['restaurant_dashboard_widget']);
-
-    $wp_meta_boxes['dashboard']['normal']['high']['core']['restaurant_dashboard_widget'] = $widget;
+//
+//    global $wp_meta_boxes;
+//
+//    $widget = $wp_meta_boxes['dashboard']['normal']['core']['restaurant_dashboard_widget'] ?? null;
+//    if (!$widget) return;
+//
+//    unset($wp_meta_boxes['dashboard']['normal']['core']['restaurant_dashboard_widget']);
+//
+//    $wp_meta_boxes['dashboard']['normal']['high']['core']['restaurant_dashboard_widget'] = $widget;
 });
 
 function render_restaurant_dashboard_widget() {

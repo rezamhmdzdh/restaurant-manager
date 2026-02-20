@@ -3,8 +3,9 @@
 add_action('wp_enqueue_scripts', function () {
     if (!is_account_page() || !is_user_logged_in()) return;
 
-    $user = wp_get_current_user();
-    if (!in_array('shop_manager', (array)$user->roles, true)) return;
+    if ( ! current_user_can('manage_woocommerce') ) {
+        return;
+    }
 
     wp_add_inline_script('jquery', '
         document.addEventListener("DOMContentLoaded", function () {

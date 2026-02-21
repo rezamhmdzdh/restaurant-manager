@@ -750,3 +750,8 @@ span[data-copy] {
     margin-bottom: 20px;
     color: #FFF;
 }
+.rm-order-items-quantity{
+    background: #8cd4ad;
+    padding: 0 5px;
+    border-radius: 2px;
+}

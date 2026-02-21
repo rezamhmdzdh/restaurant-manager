@@ -37,10 +37,13 @@ add_action( RM_ONHOLD_DELAY_HOOK, function ( $order_id ) {
         return;
     }
 
+    $settings = function_exists('rm_get_settings') ? rm_get_settings() : [];
+    $mobiles = isset($settings['sms_admin_mobiles']) ? trim((string)$settings['sms_admin_mobiles']) : '';
+
     $data = [
         'post_id' => $order_id,
         'type'    => 4,
-        'mobile'  => '09154034946',
+        'mobile'  => $mobiles,
         'message' => 'pcode:p8q3trwbrbn8jnp',
     ];
 

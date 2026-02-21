@@ -1,7 +1,5 @@
 <?php
-$settings = function_exists('rm_get_settings') ? rm_get_settings() : [];
-$sound_url = $settings['new_order_sound_id'] ?? '';
-
+$sound_url = function_exists('rm_get_new_order_sound_url') ? rm_get_new_order_sound_url() : '';
 ?>
 <div class="dashboard" id="rm-dashboard">
     <!-- Sidebar -->
@@ -50,44 +48,38 @@ $sound_url = $settings['new_order_sound_id'] ?? '';
         <div class="content" id="orders-page">
             <div class="page-header">
                 <h3>مدیریت سفارش‌ها</h3>
-
                 <button id="rm-enable-notification" class="rm-enable-notification">
                     🔔 فعال‌سازی اعلان
                 </button>
                 <div class="rm-orders-tabs">
-
-
-
                     <?php
                     $status_counts = [];
-
                     foreach ($orders as $order) {
-                        $status = $order->get_status();
-                        $status_counts[$status] = ($status_counts[$status] ?? 0) + 1;
+                        $st = $order->get_status(); // مثل pending, processing, completed, cancelled
+                        $status_counts[$st] = ($status_counts[$st] ?? 0) + 1;
                     }
 
-                    foreach (wc_get_order_statuses() as $key => $label) :
-                        $status = str_replace('wc-', '', $key);
-                        $count = $status_counts[$status] ?? 0;
+                    $tabs = [
+                        'on-hold'    => 'در انتظار تایید',
+                        'processing' => 'در حال آماده سازی',
+                        'completed'  => 'ارسال شده',
+                        'cancelled'  => 'لغو شده',
+                    ];
 
-                        if ($count === 0) continue;
+                    foreach ($tabs as $status => $label):
+                        $count = $status_counts[$status] ?? 0;
                         ?>
                         <a class="rm-tab" data-status="<?php echo esc_attr($status); ?>">
                             <?php echo esc_html($label); ?>
-                            <span class="rm-count"><?php echo $count; ?></span>
+                            <span class="rm-count"><?php echo (int)$count; ?></span>
                         </a>
                     <?php endforeach; ?>
 
                     <a class="rm-tab active" data-status="">
                         همه
-                        <span class="rm-count">
-                          <?php echo count($orders); ?>
-                     </span>
+                        <span class="rm-count"><?php echo (int)count($orders); ?></span>
                     </a>
-
                 </div>
-
-
             </div>
 
             <div class="table-container">

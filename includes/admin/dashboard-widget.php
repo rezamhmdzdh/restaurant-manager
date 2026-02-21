@@ -9,18 +9,9 @@ add_action('wp_dashboard_setup', function () {
 
     wp_add_dashboard_widget(
         'restaurant_dashboard_widget',
-        'ورود به داشبورد مدیرت رستوران',
+        'ورود به داشبورد مدیریت رستوران',
         'render_restaurant_dashboard_widget'
     );
-//
-//    global $wp_meta_boxes;
-//
-//    $widget = $wp_meta_boxes['dashboard']['normal']['core']['restaurant_dashboard_widget'] ?? null;
-//    if (!$widget) return;
-//
-//    unset($wp_meta_boxes['dashboard']['normal']['core']['restaurant_dashboard_widget']);
-//
-//    $wp_meta_boxes['dashboard']['normal']['high']['core']['restaurant_dashboard_widget'] = $widget;
 });
 
 function render_restaurant_dashboard_widget() {
@@ -34,10 +25,6 @@ function render_restaurant_dashboard_widget() {
         <a class="button button-primary button-hero" href="<?php echo esc_url($url); ?>">
             ورود به داشبورد مدیریت رستوران
         </a>
-    </p>
-
-    <p style="margin-top:10px; color:#666;">
-        نکته: این بخش فقط برای مدیر فروشگاه نمایش داده می‌شود.
     </p>
     <?php
 }

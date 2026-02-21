@@ -51,6 +51,14 @@ function rm_register_settings()
         'rm-settings',
         'rm_notifications_section'
     );
+
+    add_settings_field(
+        'sms_admin_mobiles',
+        'شماره موبایل دریافت پیامک',
+        'rm_field_sms_admin_mobiles',
+        'rm-settings',
+        'rm_notifications_section'
+    );
 }
 
 function rm_default_settings()
@@ -75,6 +83,10 @@ function rm_sanitize_settings($input)
     $out['new_order_sound_id'] = isset($input['new_order_sound_id'])
         ? absint($input['new_order_sound_id'])
         : 0;
+
+    $out['sms_admin_mobiles'] = isset($input['sms_admin_mobiles'])
+        ? sanitize_text_field($input['sms_admin_mobiles'])
+        : '';
 
     return $out;
 }
@@ -217,5 +229,26 @@ function rm_render_settings_page()
             ?>
         </form>
     </div>
+    <?php
+}
+
+
+
+function rm_field_sms_admin_mobiles()
+{
+    $s = rm_get_settings();
+    $val = isset($s['sms_admin_mobiles']) ? (string)$s['sms_admin_mobiles'] : '';
+    ?>
+    <input
+            type="text"
+            class="regular-text"
+            name="rm_settings[sms_admin_mobiles]"
+            value="<?php echo esc_attr($val); ?>"
+            placeholder="0912xxxx,0915xxxx"
+            dir="ltr"
+    />
+    <p class="description">
+        شماره‌ها را با کاما جدا کنید. مثال: 0912xxxx,0915xxxx
+    </p>
     <?php
 }

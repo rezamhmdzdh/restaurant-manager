@@ -1,8 +1,7 @@
 <?php
 $settings = function_exists('rm_get_settings') ? rm_get_settings() : [];
-$sound_url = $settings['new_order_sound_url'] ?? '';
+$sound_url = $settings['new_order_sound_id'] ?? '';
 
-$sound_url = $sound_url ? esc_url($sound_url) : '';
 ?>
 <div class="dashboard" id="rm-dashboard">
     <!-- Sidebar -->
@@ -57,12 +56,7 @@ $sound_url = $sound_url ? esc_url($sound_url) : '';
                 </button>
                 <div class="rm-orders-tabs">
 
-                    <a class="rm-tab active" data-status="">
-                        همه
-                        <span class="rm-count">
-                          <?php echo count($orders); ?>
-                     </span>
-                    </a>
+
 
                     <?php
                     $status_counts = [];
@@ -83,6 +77,13 @@ $sound_url = $sound_url ? esc_url($sound_url) : '';
                             <span class="rm-count"><?php echo $count; ?></span>
                         </a>
                     <?php endforeach; ?>
+
+                    <a class="rm-tab active" data-status="">
+                        همه
+                        <span class="rm-count">
+                          <?php echo count($orders); ?>
+                     </span>
+                    </a>
 
                 </div>
 
